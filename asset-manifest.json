@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/raffletron-2k19/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/raffletron-2k19/static/js/main.ec69344d.chunk.js",
+    "main.js.map": "/raffletron-2k19/static/js/main.ec69344d.chunk.js.map",
+    "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.c179815e.js",
+    "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.c179815e.js.map",
+    "static/js/2.57720050.chunk.js": "/raffletron-2k19/static/js/2.57720050.chunk.js",
+    "static/js/2.57720050.chunk.js.map": "/raffletron-2k19/static/js/2.57720050.chunk.js.map",
+    "index.html": "/raffletron-2k19/index.html",
+    "precache-manifest.a63f868bc4492d60dd60794ef1f8a24c.js": "/raffletron-2k19/precache-manifest.a63f868bc4492d60dd60794ef1f8a24c.js",
+    "service-worker.js": "/raffletron-2k19/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/raffletron-2k19/static/css/main.5ecd60fb.chunk.css.map",
+    "static/media/Ralph.gif": "/raffletron-2k19/static/media/Ralph.8bdf1bcc.gif",
+    "static/media/RalphSr.gif": "/raffletron-2k19/static/media/RalphSr.516831cd.gif",
+    "static/media/Ralphette.gif": "/raffletron-2k19/static/media/Ralphette.e29bc649.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c179815e.js",
+    "static/js/2.57720050.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.ec69344d.chunk.js"
+  ]
+}
