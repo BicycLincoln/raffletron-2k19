@@ -3,6 +3,7 @@ import { Block } from "baseui/block";
 import { Button } from "baseui/button";
 import React, { useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
+import { ReactComponent as BicycLincoln } from "../Images/BicycLincoln.svg";
 import Ralph from "../Images/Ralph.gif";
 import Ralphette from "../Images/Ralphette.gif";
 import RalphSr from "../Images/RalphSr.gif";
@@ -96,6 +97,14 @@ const EntriesLink = styled(StyledLink, ({ $theme }) => ({
   color: $theme.colors.primary200
 }));
 
+const StyledBicycLincoln = styled(BicycLincoln, ({ $theme }) => ({
+  position: "absolute",
+  bottom: $theme.sizing.scale800,
+  left: "50%",
+  transform: "translateX(-50%)",
+  height: "40px"
+}));
+
 export const Home: React.FC = () => {
   const [currentWinner, setCurrentWinner] = useState<string>("");
   const [entries, setEntries] = useState<any[]>(getLocal("entries") || []);
@@ -159,6 +168,7 @@ export const Home: React.FC = () => {
       </DrawButton>
 
       <EntriesLink to="/entries">Entries</EntriesLink>
+      <StyledBicycLincoln />
     </Body>
   );
 };
