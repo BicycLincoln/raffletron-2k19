@@ -105,7 +105,7 @@ export const Entries: React.FC = () => {
         <StyledTable>
           <StyledHead>
             <StyledHeadCell>Name</StyledHeadCell>
-            <StyledHeadCell>Tickets</StyledHeadCell>
+            <StyledHeadCell>Entries</StyledHeadCell>
             <StyledHeadCell></StyledHeadCell>
           </StyledHead>
           <StyledBody>
