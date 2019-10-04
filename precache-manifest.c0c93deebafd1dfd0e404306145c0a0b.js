@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c080f6b3f8ca1642ef53c259bfcc5695",
+    "revision": "c1f49c3bc365687abc8a452750235e3a",
     "url": "/raffletron-2k19/index.html"
   },
   {
-    "revision": "1004888e0e8d41dba523",
+    "revision": "d96479bccd339cbab60d",
     "url": "/raffletron-2k19/static/css/main.5ecd60fb.chunk.css"
   },
   {
@@ -12,12 +12,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/raffletron-2k19/static/js/2.0f72177f.chunk.js"
   },
   {
-    "revision": "1004888e0e8d41dba523",
-    "url": "/raffletron-2k19/static/js/main.c2567625.chunk.js"
+    "revision": "d96479bccd339cbab60d",
+    "url": "/raffletron-2k19/static/js/main.45074b8a.chunk.js"
   },
   {
     "revision": "5292ee426b3f68e7ffec",
     "url": "/raffletron-2k19/static/js/runtime-main.c179815e.js"
+  },
+  {
+    "revision": "448a50f7d4fb73126328b5fde7a7f2e9",
+    "url": "/raffletron-2k19/static/media/BicycLincoln.448a50f7.svg"
   },
   {
     "revision": "8bdf1bcc001d01495a93f1543ef88799",

@@ -1,16 +1,17 @@
 {
   "files": {
     "main.css": "/raffletron-2k19/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/raffletron-2k19/static/js/main.c2567625.chunk.js",
-    "main.js.map": "/raffletron-2k19/static/js/main.c2567625.chunk.js.map",
+    "main.js": "/raffletron-2k19/static/js/main.45074b8a.chunk.js",
+    "main.js.map": "/raffletron-2k19/static/js/main.45074b8a.chunk.js.map",
     "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.c179815e.js",
     "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.c179815e.js.map",
     "static/js/2.0f72177f.chunk.js": "/raffletron-2k19/static/js/2.0f72177f.chunk.js",
     "static/js/2.0f72177f.chunk.js.map": "/raffletron-2k19/static/js/2.0f72177f.chunk.js.map",
     "index.html": "/raffletron-2k19/index.html",
-    "precache-manifest.4ce02873023bdaefac02f76a12cda7be.js": "/raffletron-2k19/precache-manifest.4ce02873023bdaefac02f76a12cda7be.js",
+    "precache-manifest.c0c93deebafd1dfd0e404306145c0a0b.js": "/raffletron-2k19/precache-manifest.c0c93deebafd1dfd0e404306145c0a0b.js",
     "service-worker.js": "/raffletron-2k19/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/raffletron-2k19/static/css/main.5ecd60fb.chunk.css.map",
+    "static/media/BicycLincoln.448a50f7.svg": "/raffletron-2k19/static/media/BicycLincoln.448a50f7.svg",
     "static/media/Ralph.gif": "/raffletron-2k19/static/media/Ralph.8bdf1bcc.gif",
     "static/media/RalphSr.gif": "/raffletron-2k19/static/media/RalphSr.516831cd.gif",
     "static/media/Ralphette.gif": "/raffletron-2k19/static/media/Ralphette.e29bc649.gif"
@@ -19,6 +20,6 @@
     "static/js/runtime-main.c179815e.js",
     "static/js/2.0f72177f.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.c2567625.chunk.js"
+    "static/js/main.45074b8a.chunk.js"
   ]
 }
