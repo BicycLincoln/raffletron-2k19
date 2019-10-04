@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { styled } from "baseui";
 import { Block } from "baseui/block";
 import Ralph from "./Ralph.gif";
+import RalphSr from "./RalphSr.gif";
+import Ralphette from "./Ralphette.gif";
 import { getLocal, shuffle, random, setLocal } from "../Utilities";
 import { Button } from "baseui/button";
+
+const ANIMATION_LENGTH = 8000
+const GIFS = [ Ralph, RalphSr, Ralphette ]
 
 const Body = styled(Block, ({ $theme }) => ({
   boxSizing: "border-box",
@@ -25,18 +30,19 @@ const ImageWrapper = styled(Block, ({ $theme }) => ({
   position: "absolute",
   top: "50%",
   left: "-600px",
-  transform: "translateY(-50%)",
-  animationDuration: "10s",
+  transform: "translate(0, -50%)",
+  animationDuration: `${ANIMATION_LENGTH / 1000}s`,
   animationIterationCount: "1",
   animationTimingFunction: "linear",
   animationName: {
     from: {
-      left: "-600px"
+      transform: "translate(0, -50%)"
     },
     to: {
-      left: "100%"
+      transform: "translate(calc(100vw + 600px), -50%)"
     }
   },
+  willChange: "transform",
   width: "600px",
   height: "600px",
 }));
@@ -52,7 +58,7 @@ const Cover = styled(Block, ({ $theme }) => ({
 
 const LogoCover = styled(Block, ({ $theme }) => ({
     position: "absolute",
-    height: "120px",
+    height: "240px",
     width: "60px",
     right: "0",
     bottom: "0",
@@ -85,6 +91,7 @@ export const Home: React.FC = () => {
   const [currentWinner, setCurrentWinner] = useState<string>("");
   const [entries, setEntries] = useState<any[]>(getLocal("entries") || []);
   const [drawingInProgress, setDrawingInProgress] = useState<boolean>(false);
+  const image = random(GIFS)
 
   const getNextWinner = () => {
     setDrawingInProgress(true);
@@ -111,7 +118,7 @@ export const Home: React.FC = () => {
     setLocal("entries", newEntries);
     setTimeout(() => {
       setDrawingInProgress(false);
-    }, 10000);
+    }, ANIMATION_LENGTH);
   };
 
   const ticketsRemaining = entries.length > 0
@@ -127,7 +134,7 @@ export const Home: React.FC = () => {
       {drawingInProgress && (
         <ImageWrapper>
           <Cover />
-          <Image src={Ralph} />
+          <Image src={image} />
           <LogoCover />
         </ImageWrapper>
       )}
