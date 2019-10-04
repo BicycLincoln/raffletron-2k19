@@ -1,18 +1,19 @@
-import React, { useState } from "react";
 import { styled } from "baseui";
 import { Block } from "baseui/block";
+import { Button } from "baseui/button";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
-import { Button } from "baseui/button";
 import {
-  StyledTable,
+  StyledBody,
+  StyledCell,
   StyledHead,
   StyledHeadCell,
-  StyledBody,
   StyledRow,
-  StyledCell
+  StyledTable
 } from "baseui/table";
-import {getLocal, setLocal} from "../Utilities"
+import React, { useState } from "react";
+import { StyledLink } from "../Components/StyledLink";
+import { getLocal, setLocal } from "../Utilities";
 
 const Body = styled(Block, ({ $theme }) => ({
   display: "flex",
@@ -32,6 +33,13 @@ const Form = styled("form", ({ $theme }) => ({
 
 const Table = styled(Block, ({ $theme }) => ({
   flex: 1
+}));
+
+const HomeLink = styled(StyledLink, ({ $theme }) => ({
+  position: "absolute",
+  bottom: $theme.sizing.scale400,
+  left: $theme.sizing.scale400,
+  color: $theme.colors.primary200
 }));
 
 export const Entries: React.FC = () => {
@@ -67,6 +75,7 @@ export const Entries: React.FC = () => {
 
   return (
     <Body>
+      <HomeLink to="/">Home</HomeLink>
       <Form onSubmit={onSubmit}>
         <FormControl label="Name">
           <Input
