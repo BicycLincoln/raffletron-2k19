@@ -1,10 +1,10 @@
-import React from "react";
 import { BaseProvider, LightTheme } from "baseui";
+import React from "react";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
-import { Entries } from "./Pages/Entries"
-import { Home } from "./Pages/Home"
+import { Entries } from "./Pages/Entries";
+import { Home } from "./Pages/Home";
 
 const App: React.FC = () => {
   return (
