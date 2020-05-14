@@ -1,48 +1,60 @@
-import { styled } from "baseui";
-import { Block } from "baseui/block";
+import { styled, withStyle } from "baseui";
 import { Button } from "baseui/button";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import {
-  StyledBody,
-  StyledCell,
-  StyledHead,
-  StyledHeadCell,
-  StyledRow,
-  StyledTable
-} from "baseui/table";
-import React, { useState } from "react";
+  StyledRoot,
+  StyledTable,
+  StyledTableBody,
+  StyledTableBodyCell,
+  StyledTableBodyRow,
+  StyledTableHead,
+  StyledTableHeadCell,
+  StyledTableHeadRow,
+} from "baseui/table-semantic";
+import React, { useRef, useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
 import { getLocal, setLocal } from "../Utilities";
 
-const Body = styled(Block, ({ $theme }) => ({
+const Body = styled("div", ({ $theme }) => ({
   display: "flex",
-  minHeight: "100vh",
   backgroundColor: $theme.colors.background,
   color: $theme.colors.foreground,
   paddingTop: $theme.sizing.scale800,
   paddingBottom: $theme.sizing.scale800,
   paddingLeft: $theme.sizing.scale800,
-  paddingRight: $theme.sizing.scale800
+  paddingRight: $theme.sizing.scale800,
 }));
 
 const Form = styled("form", ({ $theme }) => ({
   width: "300px",
-  marginRight: $theme.sizing.scale800
+  marginRight: $theme.sizing.scale800,
 }));
 
-const Table = styled(Block, ({ $theme }) => ({
-  flex: 1
+const TableWrapper = styled("div", ({ $theme }) => ({
+  flex: 1,
 }));
 
-const HomeLink = styled(StyledLink, ({ $theme }) => ({
+const HomeLink = withStyle<
+  typeof StyledLink,
+  React.ComponentProps<typeof StyledLink>
+>(StyledLink, ({ $theme }) => ({
   position: "absolute",
   bottom: $theme.sizing.scale400,
   left: $theme.sizing.scale400,
-  color: $theme.colors.primary200
+  color: $theme.colors.primary200,
+}));
+
+const Cell = withStyle(StyledTableBodyCell, ({ $theme }) => ({
+  verticalAlign: "center",
+}));
+
+const HeadCell = withStyle(StyledTableHeadCell, ({ $theme }) => ({
+  verticalAlign: "center",
 }));
 
 export const Entries: React.FC = () => {
+  const nameInputRef = useRef<any>(null);
   const [name, setName] = useState<string>("");
   const [tickets, setTickets] = useState<string>("");
   const [entries, setEntries] = useState<any[]>(getLocal("entries") || []);
@@ -54,18 +66,19 @@ export const Entries: React.FC = () => {
         ...entries,
         {
           name,
-          tickets
-        }
+          tickets,
+        },
       ];
       setEntries(newEntries);
       setLocal("entries", newEntries);
       setName("");
       setTickets("");
+      nameInputRef?.current?.focus();
     }
   };
 
   const onRemove = (i: number) => {
-    return (e: any) => {
+    return () => {
       const newEntries = [...entries];
       newEntries.splice(i, 1);
       setLocal("entries", newEntries);
@@ -84,7 +97,8 @@ export const Entries: React.FC = () => {
             size="compact"
             autoComplete="off"
             autoFocus
-            onChange={event => setName(event.currentTarget.value)}
+            inputRef={nameInputRef}
+            onChange={(event) => setName(event.currentTarget.value)}
           />
         </FormControl>
         <FormControl label="Entries">
@@ -94,35 +108,39 @@ export const Entries: React.FC = () => {
             size="compact"
             autoComplete="off"
             value={tickets}
-            onChange={event => setTickets(event.currentTarget.value)}
+            onChange={(event) => setTickets(event.currentTarget.value)}
           />
         </FormControl>
         <Button type="submit" size="compact">
           Add Entry
         </Button>
       </Form>
-      <Table>
-        <StyledTable>
-          <StyledHead>
-            <StyledHeadCell>Name</StyledHeadCell>
-            <StyledHeadCell>Entries</StyledHeadCell>
-            <StyledHeadCell></StyledHeadCell>
-          </StyledHead>
-          <StyledBody>
-            {entries.map((entry: any, index: number) => (
-              <StyledRow key={index}>
-                <StyledCell>{entry.name}</StyledCell>
-                <StyledCell>{entry.tickets}</StyledCell>
-                <StyledCell>
-                  <Button size="compact" onClick={onRemove(index)}>
-                    Remove
-                  </Button>
-                </StyledCell>
-              </StyledRow>
-            ))}
-          </StyledBody>
-        </StyledTable>
-      </Table>
+      <TableWrapper>
+        <StyledRoot $style={{ overflow: "visible" }}>
+          <StyledTable>
+            <StyledTableHead>
+              <StyledTableHeadRow>
+                <HeadCell>Name</HeadCell>
+                <HeadCell>Entries</HeadCell>
+                <HeadCell></HeadCell>
+              </StyledTableHeadRow>
+            </StyledTableHead>
+            <StyledTableBody>
+              {entries.map((entry: any, index: number) => (
+                <StyledTableBodyRow key={index}>
+                  <Cell>{entry.name}</Cell>
+                  <Cell>{entry.tickets}</Cell>
+                  <Cell>
+                    <Button size="compact" onClick={onRemove(index)}>
+                      Remove
+                    </Button>
+                  </Cell>
+                </StyledTableBodyRow>
+              ))}
+            </StyledTableBody>
+          </StyledTable>
+        </StyledRoot>
+      </TableWrapper>
     </Body>
   );
 };

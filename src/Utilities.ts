@@ -17,5 +17,5 @@ export const shuffle = (a: any[]) => {
 };
 
 export const random = (items: any[]) => {
-  return items[Math.floor(Math.random()*items.length)];
-}
+  return items[Math.floor(Math.random() * items.length)];
+};

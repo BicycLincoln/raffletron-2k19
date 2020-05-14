@@ -1,5 +1,4 @@
-import { styled } from "baseui";
-import { Block } from "baseui/block";
+import { styled, withStyle } from "baseui";
 import { Button } from "baseui/button";
 import React, { useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
@@ -12,7 +11,7 @@ import { getLocal, random, setLocal, shuffle } from "../Utilities";
 const ANIMATION_LENGTH = 8000;
 const GIFS = [Ralph, RalphSr, Ralphette];
 
-const Body = styled(Block, ({ $theme }) => ({
+const Body = styled("div", ({ $theme }) => ({
   boxSizing: "border-box",
   position: "absolute",
   minHeight: "100vh",
@@ -25,11 +24,11 @@ const Body = styled(Block, ({ $theme }) => ({
   paddingBottom: $theme.sizing.scale800,
   paddingLeft: $theme.sizing.scale800,
   paddingRight: $theme.sizing.scale800,
-  overflow: "hidden"
+  overflow: "hidden",
 }));
 
 // @ts-ignore
-const ImageWrapper = styled(Block, ({ $theme }) => ({
+const ImageWrapper = styled("div", ({ $theme }) => ({
   position: "absolute",
   top: "50%",
   left: "-600px",
@@ -39,62 +38,65 @@ const ImageWrapper = styled(Block, ({ $theme }) => ({
   animationTimingFunction: "linear",
   animationName: {
     from: {
-      transform: "translate(0, -50%)"
+      transform: "translate(0, -50%)",
     },
     to: {
-      transform: "translate(calc(100vw + 600px), -50%)"
-    }
+      transform: "translate(calc(100vw + 600px), -50%)",
+    },
   },
   willChange: "transform",
   width: "600px",
-  height: "600px"
+  height: "600px",
 }));
 
-const Cover = styled(Block, ({ $theme }) => ({
+const Cover = styled("div", ({ $theme }) => ({
   position: "absolute",
   height: "600px",
   width: "300vw",
   left: "35%",
   top: "0",
-  backgroundColor: $theme.colors.background
+  backgroundColor: $theme.colors.background,
 }));
 
-const LogoCover = styled(Block, ({ $theme }) => ({
+const LogoCover = styled("div", ({ $theme }) => ({
   position: "absolute",
   height: "240px",
   width: "60px",
   right: "0",
   bottom: "0",
-  backgroundColor: $theme.colors.background
+  backgroundColor: $theme.colors.background,
 }));
 
 const Image = styled("img", ({ $theme }) => ({
   position: "absolute",
   height: "600px",
-  width: "600px"
+  width: "600px",
 }));
 
-const Winner = styled(Block, ({ $theme }) => ({
+const Winner = styled("div", ({ $theme }) => ({
   position: "absolute",
   display: "block",
   textAlign: "center",
   top: "50%",
   left: "50%",
   transform: "translate(-50%,-50%)",
-  ...$theme.typography.font1450
+  ...$theme.typography.font1450,
 }));
 
 const DrawButton = styled(Button, ({ $theme }) => ({
   position: "absolute",
   top: $theme.sizing.scale400,
-  right: $theme.sizing.scale400
+  right: $theme.sizing.scale400,
 }));
 
-const EntriesLink = styled(StyledLink, ({ $theme }) => ({
+const EntriesLink = withStyle<
+  typeof StyledLink,
+  React.ComponentProps<typeof StyledLink>
+>(StyledLink, ({ $theme }) => ({
   position: "absolute",
   bottom: $theme.sizing.scale400,
   right: $theme.sizing.scale400,
-  color: $theme.colors.primary200
+  color: $theme.colors.primary200,
 }));
 
 const StyledBicycLincoln = styled(BicycLincoln, ({ $theme }) => ({
@@ -102,7 +104,7 @@ const StyledBicycLincoln = styled(BicycLincoln, ({ $theme }) => ({
   bottom: $theme.sizing.scale800,
   left: "50%",
   transform: "translateX(-50%)",
-  height: "40px"
+  height: "40px",
 }));
 
 export const Home: React.FC = () => {
@@ -124,11 +126,11 @@ export const Home: React.FC = () => {
     const winner = random(shuffle(hat));
     setCurrentWinner(winner);
 
-    const newEntries = [...entries].map(entry => {
+    const newEntries = [...entries].map((entry) => {
       return entry.name === winner
         ? {
             ...entry,
-            tickets: 0
+            tickets: 0,
           }
         : entry;
     });
@@ -142,7 +144,7 @@ export const Home: React.FC = () => {
   const ticketsRemaining =
     entries.length > 0
       ? entries
-          .map(entry => parseInt(entry.tickets, 10))
+          .map((entry) => parseInt(entry.tickets, 10))
           .reduce((prev, current) => prev + current)
       : 0;
 
