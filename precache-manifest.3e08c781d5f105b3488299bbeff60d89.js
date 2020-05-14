@@ -1,23 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c1f49c3bc365687abc8a452750235e3a",
+    "revision": "e1f47446563faed592bb9edb004c3278",
     "url": "/raffletron-2k19/index.html"
   },
   {
-    "revision": "d96479bccd339cbab60d",
-    "url": "/raffletron-2k19/static/css/main.5ecd60fb.chunk.css"
+    "revision": "30ebf3ff59c7d85b6d16",
+    "url": "/raffletron-2k19/static/css/main.34de6062.chunk.css"
   },
   {
-    "revision": "c53b72259c3dced79868",
-    "url": "/raffletron-2k19/static/js/2.0f72177f.chunk.js"
+    "revision": "c260341e46dfacd5feb5",
+    "url": "/raffletron-2k19/static/js/2.d8e2b7c2.chunk.js"
   },
   {
-    "revision": "d96479bccd339cbab60d",
-    "url": "/raffletron-2k19/static/js/main.45074b8a.chunk.js"
+    "revision": "c64c486544348f10a6d6c716950bc223",
+    "url": "/raffletron-2k19/static/js/2.d8e2b7c2.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5292ee426b3f68e7ffec",
-    "url": "/raffletron-2k19/static/js/runtime-main.c179815e.js"
+    "revision": "30ebf3ff59c7d85b6d16",
+    "url": "/raffletron-2k19/static/js/main.de8783fa.chunk.js"
+  },
+  {
+    "revision": "21d313165d02910b8d48",
+    "url": "/raffletron-2k19/static/js/runtime-main.b3769e0d.js"
   },
   {
     "revision": "448a50f7d4fb73126328b5fde7a7f2e9",
