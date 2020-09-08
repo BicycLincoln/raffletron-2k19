@@ -120,7 +120,7 @@ const LogoImage = styled("img", ({ $theme }) => ({
   bottom: $theme.sizing.scale800,
   transform: "translateX(-50%)",
   height: "20vh",
-  zIndex: 1
+  zIndex: 1,
 }));
 
 export const Home: React.FC = () => {
@@ -151,13 +151,11 @@ export const Home: React.FC = () => {
         : entry;
     });
     setEntries(newEntries);
-    setLocal("entries", newEntries);
     setTimeout(() => {
       setDrawingInProgress(false);
     }, ANIMATION_LENGTH);
   };
 
-  
   const ticketsRemaining =
     entries.length > 0
       ? entries

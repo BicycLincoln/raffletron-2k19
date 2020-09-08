@@ -18,10 +18,8 @@ export const useLocalState = <S>(
 
   const setValue = (value: S | ((prev: S) => S)) => {
     try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      setLocal(key, valueToStore);
+      setStoredValue(value);
+      setLocal(key, value, initialValue);
     } catch (error) {
       // A more advanced implementation would handle the error case
       console.log(error);
