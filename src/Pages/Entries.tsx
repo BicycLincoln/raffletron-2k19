@@ -14,7 +14,8 @@ import {
 } from "baseui/table-semantic";
 import React, { useRef, useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
-import { getLocal, setLocal } from "../Utilities";
+import { useLocalState } from "../Hooks/useLocalState";
+import { setLocal } from "../Utilities/setLocal";
 
 const Body = styled("div", ({ $theme }) => ({
   display: "flex",
@@ -57,7 +58,7 @@ export const Entries: React.FC = () => {
   const nameInputRef = useRef<any>(null);
   const [name, setName] = useState<string>("");
   const [tickets, setTickets] = useState<string>("");
-  const [entries, setEntries] = useState<any[]>(getLocal("entries") || []);
+  const [entries, setEntries] = useLocalState<any[]>("entries", []);
 
   const onSubmit = (e: any) => {
     e.preventDefault();
@@ -84,6 +85,11 @@ export const Entries: React.FC = () => {
       setLocal("entries", newEntries);
       setEntries(newEntries);
     };
+  };
+
+  const onRemoveAll = () => {
+    setLocal("entries", []);
+    setEntries([]);
   };
 
   return (
@@ -132,7 +138,7 @@ export const Entries: React.FC = () => {
                   <Cell>{entry.tickets}</Cell>
                   <Cell>
                     <Button size="compact" onClick={onRemove(index)}>
-                      Remove
+                      Remove Entry
                     </Button>
                   </Cell>
                 </StyledTableBodyRow>
@@ -140,6 +146,9 @@ export const Entries: React.FC = () => {
             </StyledTableBody>
           </StyledTable>
         </StyledRoot>
+        <Button size="compact" onClick={() => onRemoveAll()}>
+          Remove All Entries
+        </Button>
       </TableWrapper>
     </Body>
   );

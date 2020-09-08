@@ -2,14 +2,19 @@ import { styled, withStyle } from "baseui";
 import { Button } from "baseui/button";
 import React, { useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
-import { ReactComponent as BicycLincoln } from "../Images/BicycLincoln.svg";
+import { useLocalState } from "../Hooks/useLocalState";
+import GravelWorlds from "../Images/GravelWorlds.png";
 import Ralph from "../Images/Ralph.gif";
 import Ralphette from "../Images/Ralphette.gif";
 import RalphSr from "../Images/RalphSr.gif";
-import { getLocal, random, setLocal, shuffle } from "../Utilities";
+import { random } from "../Utilities/random";
+import { setLocal } from "../Utilities/setLocal";
+import { shuffle } from "../Utilities/shuffle";
 
-const ANIMATION_LENGTH = 8000;
+const ANIMATION_LENGTH = 6000;
 const GIFS = [Ralph, RalphSr, Ralphette];
+
+const GIF_SIZE = "65vh";
 
 const Body = styled("div", ({ $theme }) => ({
   boxSizing: "border-box",
@@ -30,8 +35,8 @@ const Body = styled("div", ({ $theme }) => ({
 // @ts-ignore
 const ImageWrapper = styled("div", ({ $theme }) => ({
   position: "absolute",
-  top: "50%",
-  left: "-600px",
+  top: "40%",
+  left: `-${GIF_SIZE}`,
   transform: "translate(0, -50%)",
   animationDuration: `${ANIMATION_LENGTH / 1000}s`,
   animationIterationCount: "1",
@@ -41,17 +46,18 @@ const ImageWrapper = styled("div", ({ $theme }) => ({
       transform: "translate(0, -50%)",
     },
     to: {
-      transform: "translate(calc(100vw + 600px), -50%)",
+      transform: `translate(calc(100vw + ${GIF_SIZE}), -50%)`,
     },
   },
   willChange: "transform",
-  width: "600px",
-  height: "600px",
+  width: `${GIF_SIZE}`,
+  height: `${GIF_SIZE}`,
+  zIndex: 2,
 }));
 
 const Cover = styled("div", ({ $theme }) => ({
   position: "absolute",
-  height: "600px",
+  height: `${GIF_SIZE}`,
   width: "300vw",
   left: "35%",
   top: "0",
@@ -62,22 +68,22 @@ const LogoCover = styled("div", ({ $theme }) => ({
   position: "absolute",
   height: "240px",
   width: "60px",
-  right: "0",
+  right: "-8px",
   bottom: "0",
   backgroundColor: $theme.colors.background,
 }));
 
 const Image = styled("img", ({ $theme }) => ({
   position: "absolute",
-  height: "600px",
-  width: "600px",
+  height: `${GIF_SIZE}`,
+  width: `${GIF_SIZE}`,
 }));
 
 const Winner = styled("div", ({ $theme }) => ({
   position: "absolute",
   display: "block",
   textAlign: "center",
-  top: "50%",
+  top: "40%",
   left: "50%",
   transform: "translate(-50%,-50%)",
   ...$theme.typography.font1450,
@@ -99,17 +105,27 @@ const EntriesLink = withStyle<
   color: $theme.colors.primary200,
 }));
 
-const StyledBicycLincoln = styled(BicycLincoln, ({ $theme }) => ({
+// keeping in here for later
+// const StyledBicycLincoln = styled(BicycLincoln, ({ $theme }) => ({
+//   position: "absolute",
+//   bottom: $theme.sizing.scale800,
+//   left: "50%",
+//   transform: "translateX(-50%)",
+//   height: "40px",
+// }));
+
+const LogoImage = styled("img", ({ $theme }) => ({
   position: "absolute",
-  bottom: $theme.sizing.scale800,
   left: "50%",
+  bottom: $theme.sizing.scale800,
   transform: "translateX(-50%)",
-  height: "40px",
+  height: "20vh",
+  zIndex: 1
 }));
 
 export const Home: React.FC = () => {
   const [currentWinner, setCurrentWinner] = useState<string>("");
-  const [entries, setEntries] = useState<any[]>(getLocal("entries") || []);
+  const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [drawingInProgress, setDrawingInProgress] = useState<boolean>(false);
   const image = random(GIFS);
 
@@ -141,6 +157,7 @@ export const Home: React.FC = () => {
     }, ANIMATION_LENGTH);
   };
 
+  
   const ticketsRemaining =
     entries.length > 0
       ? entries
@@ -170,7 +187,7 @@ export const Home: React.FC = () => {
       </DrawButton>
 
       <EntriesLink to="/entries">Entries</EntriesLink>
-      <StyledBicycLincoln />
+      <LogoImage src={GravelWorlds} />
     </Body>
   );
 };
