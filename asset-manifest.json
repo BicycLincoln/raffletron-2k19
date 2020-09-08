@@ -1,26 +1,26 @@
 {
   "files": {
     "main.css": "/raffletron-2k19/static/css/main.34de6062.chunk.css",
-    "main.js": "/raffletron-2k19/static/js/main.de8783fa.chunk.js",
-    "main.js.map": "/raffletron-2k19/static/js/main.de8783fa.chunk.js.map",
-    "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.b3769e0d.js",
-    "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.b3769e0d.js.map",
-    "static/js/2.d8e2b7c2.chunk.js": "/raffletron-2k19/static/js/2.d8e2b7c2.chunk.js",
-    "static/js/2.d8e2b7c2.chunk.js.map": "/raffletron-2k19/static/js/2.d8e2b7c2.chunk.js.map",
+    "main.js": "/raffletron-2k19/static/js/main.549df38e.chunk.js",
+    "main.js.map": "/raffletron-2k19/static/js/main.549df38e.chunk.js.map",
+    "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.88a3cb69.js",
+    "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.88a3cb69.js.map",
+    "static/js/2.a2005491.chunk.js": "/raffletron-2k19/static/js/2.a2005491.chunk.js",
+    "static/js/2.a2005491.chunk.js.map": "/raffletron-2k19/static/js/2.a2005491.chunk.js.map",
     "index.html": "/raffletron-2k19/index.html",
-    "precache-manifest.3e08c781d5f105b3488299bbeff60d89.js": "/raffletron-2k19/precache-manifest.3e08c781d5f105b3488299bbeff60d89.js",
+    "precache-manifest.c698d303489a44cafaf86df31fa29e26.js": "/raffletron-2k19/precache-manifest.c698d303489a44cafaf86df31fa29e26.js",
     "service-worker.js": "/raffletron-2k19/service-worker.js",
     "static/css/main.34de6062.chunk.css.map": "/raffletron-2k19/static/css/main.34de6062.chunk.css.map",
-    "static/js/2.d8e2b7c2.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.d8e2b7c2.chunk.js.LICENSE.txt",
-    "static/media/BicycLincoln.448a50f7.svg": "/raffletron-2k19/static/media/BicycLincoln.448a50f7.svg",
+    "static/js/2.a2005491.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.a2005491.chunk.js.LICENSE.txt",
+    "static/media/GravelWorlds.png": "/raffletron-2k19/static/media/GravelWorlds.30bc2a0b.png",
     "static/media/Ralph.gif": "/raffletron-2k19/static/media/Ralph.8bdf1bcc.gif",
     "static/media/RalphSr.gif": "/raffletron-2k19/static/media/RalphSr.516831cd.gif",
     "static/media/Ralphette.gif": "/raffletron-2k19/static/media/Ralphette.e29bc649.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.b3769e0d.js",
-    "static/js/2.d8e2b7c2.chunk.js",
+    "static/js/runtime-main.88a3cb69.js",
+    "static/js/2.a2005491.chunk.js",
     "static/css/main.34de6062.chunk.css",
-    "static/js/main.de8783fa.chunk.js"
+    "static/js/main.549df38e.chunk.js"
   ]
 }
