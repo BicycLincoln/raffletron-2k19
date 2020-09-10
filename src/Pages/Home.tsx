@@ -8,7 +8,6 @@ import Ralph from "../Images/Ralph.gif";
 import Ralphette from "../Images/Ralphette.gif";
 import RalphSr from "../Images/RalphSr.gif";
 import { random } from "../Utilities/random";
-import { setLocal } from "../Utilities/setLocal";
 import { shuffle } from "../Utilities/shuffle";
 
 const ANIMATION_LENGTH = 6000;
@@ -87,6 +86,7 @@ const Winner = styled("div", ({ $theme }) => ({
   left: "50%",
   transform: "translate(-50%,-50%)",
   ...$theme.typography.font1450,
+  fontFamily: "'Permanent Marker', cursive",
 }));
 
 const DrawButton = styled(Button, ({ $theme }) => ({

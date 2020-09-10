@@ -5,6 +5,7 @@ import { Client as Styletron } from "styletron-engine-atomic";
 import { Provider as StyletronProvider } from "styletron-react";
 import { Entries } from "./Pages/Entries";
 import { Home } from "./Pages/Home";
+import { Countdown } from "./Pages/Countdown";
 
 const App: React.FC = () => {
   return (
@@ -14,6 +15,9 @@ const App: React.FC = () => {
           <Switch>
             <Route path="/entries">
               <Entries />
+            </Route>
+            <Route path="/countdown">
+              <Countdown />
             </Route>
             <Route path="/">
               <Home />

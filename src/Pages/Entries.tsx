@@ -14,11 +14,10 @@ import {
   StyledTableHeadRow,
 } from "baseui/table-semantic";
 import { H5 } from "baseui/typography";
+import parse from "csv-parse";
 import React, { useRef, useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
-import { setLocal } from "../Utilities/setLocal";
-import parse from "csv-parse";
 
 const Body = styled("div", ({ $theme }) => ({
   display: "flex",
