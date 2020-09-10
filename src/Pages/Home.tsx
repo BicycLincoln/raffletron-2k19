@@ -66,7 +66,7 @@ const Cover = styled("div", ({ $theme }) => ({
 const LogoCover = styled("div", ({ $theme }) => ({
   position: "absolute",
   height: "240px",
-  width: "60px",
+  width: "150px",
   right: "-8px",
   bottom: "0",
   backgroundColor: $theme.colors.background,
@@ -86,13 +86,14 @@ const Winner = styled("div", ({ $theme }) => ({
   left: "50%",
   transform: "translate(-50%,-50%)",
   ...$theme.typography.font1450,
+  fontSize: $theme.sizing.scale3200,
   fontFamily: "'Permanent Marker', cursive",
 }));
 
 const DrawButton = styled(Button, ({ $theme }) => ({
   position: "absolute",
   top: $theme.sizing.scale400,
-  right: $theme.sizing.scale400,
+  right: $theme.sizing.scale2400,
 }));
 
 const EntriesLink = withStyle<
