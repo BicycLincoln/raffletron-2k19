@@ -17,6 +17,7 @@ const GIF_SIZE = 65;
 
 const VH = (value: number) => `${value}vh`;
 const VMAX = (value: number) => `${value}vmax`;
+const VMIN = (value: number) => `${value}vmin`;
 const S = (ms: number) => `${ms / 1000}s`;
 
 const Body = styled("div", ({ $theme }) => ({
@@ -31,7 +32,7 @@ const Body = styled("div", ({ $theme }) => ({
   overflow: "hidden",
 }));
 
-const BodyInner = styled("div", ({ $theme }) => ({
+const BodyInner = styled("div", () => ({
   position: "absolute",
   minHeight: "100%",
   minWidth: "100%",
@@ -110,7 +111,7 @@ const Winner = styled("div", ({ $theme }) => ({
   left: "50%",
   transform: "translate(-50%,-50%)",
   ...$theme.typography.font1450,
-  fontSize: "16vh",
+  fontSize: `${VMIN(16)}`,
   lineHeight: "1.05em",
   fontFamily: "'Permanent Marker', cursive",
 }));
@@ -162,9 +163,9 @@ export const Home: React.FC = () => {
     setDrawingInProgress(true);
     const hat = [];
     for (const entry of entries) {
-      const tickets = entry.tickets;
+      const entries = entry.entries;
       const name = entry.name;
-      for (let i = 0; i < tickets; ++i) {
+      for (let i = 0; i < entries; ++i) {
         hat.push(name);
       }
     }
@@ -175,7 +176,7 @@ export const Home: React.FC = () => {
       return entry.name === winner
         ? {
             ...entry,
-            tickets: 0,
+            entries: 0,
           }
         : entry;
     });
@@ -186,10 +187,10 @@ export const Home: React.FC = () => {
     }, ANIMATION_LENGTH);
   };
 
-  const ticketsRemaining =
+  const entriesRemaining =
     entries.length > 0
       ? entries
-          .map((entry) => parseInt(entry.tickets, 10))
+          .map((entry) => parseInt(entry.entries, 10))
           .reduce((prev, current) => prev + current)
       : 0;
 
@@ -212,7 +213,7 @@ export const Home: React.FC = () => {
         {Boolean(previousWinner) && <Winner>{previousWinner}</Winner>}
 
         <DrawButton
-          disabled={ticketsRemaining <= 0 || drawingInProgress}
+          disabled={entriesRemaining <= 0 || drawingInProgress}
           type="button"
           size="compact"
           onClick={getNextWinner}

@@ -14,7 +14,7 @@ import {
   StyledTableHeadRow,
 } from "baseui/table-semantic";
 import { H5 } from "baseui/typography";
-import parse from "csv-parse";
+import { parse } from "papaparse";
 import React, { useRef, useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
@@ -58,6 +58,7 @@ const HeadCell = withStyle(StyledTableHeadCell, ({ $theme }) => ({
 
 export const Entries: React.FC = () => {
   const nameInputRef = useRef<any>(null);
+  const [importing, setImporting] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [tickets, setTickets] = useState<string>("");
   const [importFile, setImportFile] = useState<File>();
@@ -71,7 +72,7 @@ export const Entries: React.FC = () => {
         ...entries,
         {
           name,
-          tickets,
+          entries: tickets,
         },
       ];
       setEntries(newEntries);
@@ -82,41 +83,28 @@ export const Entries: React.FC = () => {
   };
 
   const onImportSubmit = async (e: any) => {
-    const parser = parse({ columns: ["name", "tickets"], fromLine: 2 });
-    const reader = importFile!.stream().getReader();
-
-    parser.on("readable", () => {
-      let record: { name: string; tickets: string };
-      while ((record = parser.read())) {
-        const { name, tickets } = record;
-        if (name && parseInt(tickets, 10) > 0) {
-          console.log(name);
-          console.log(tickets);
-          setEntries((prevEntries) => {
-            console.log(prevEntries);
-            return [
-              ...prevEntries,
-              {
-                name,
-                tickets,
-              },
-            ];
+    if (importFile) {
+      const importEntries: any[] = [];
+      setImporting(true);
+      parse(importFile, {
+        worker: true,
+        header: true,
+        step: ({ data }: any) => {
+          const entry: any = {};
+          const keys = Object.keys(data);
+          keys.map((key) => {
+            entry[key.toLocaleLowerCase()] = data[key];
           });
-        }
-      }
-    });
-
-    let done = false;
-
-    // read the stream from the file upload
-    do {
-      const result = await reader?.read();
-      if (result.value) {
-        parser.write(result.value, "binary");
-      }
-      done = result?.done;
-    } while (!done);
-
+          importEntries.push(entry);
+        },
+        complete: () => {
+          setImporting(false);
+          setEntries((entries) => {
+            return [...entries, ...importEntries];
+          });
+        },
+      });
+    }
     setImportFile(undefined);
   };
 
@@ -197,7 +185,12 @@ export const Entries: React.FC = () => {
               )}
             </>
           </FormControl>
-          <Button type="submit" size="compact">
+          <Button
+            isLoading={importing}
+            disabled={importing}
+            type="submit"
+            size="compact"
+          >
             Import File
           </Button>
         </Form>
@@ -216,7 +209,7 @@ export const Entries: React.FC = () => {
               {entries.map((entry: any, index: number) => (
                 <StyledTableBodyRow key={index}>
                   <Cell>{entry.name}</Cell>
-                  <Cell>{entry.tickets}</Cell>
+                  <Cell>{entry.entries}</Cell>
                   <Cell>
                     <Button size="compact" onClick={onRemove(index)}>
                       Remove Entry
