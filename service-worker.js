@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/raffletron-2k19/precache-manifest.7dec3cccb7abc1aca22538989c751bf9.js"
+  "/raffletron-2k19/precache-manifest.dd3a5f03175b526525971f98faf1789a.js"
 );
 
 self.addEventListener('message', (event) => {
