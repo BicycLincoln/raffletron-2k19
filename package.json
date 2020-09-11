@@ -46,7 +46,7 @@
     "@types/react-router-dom": "^5.1.0",
     "@types/styletron-engine-atomic": "^1.1.0",
     "@types/styletron-react": "^5.0.2",
-    "@types/styletron-standard": "^2.0.0",
+    "@types/styletron-standard": "^2.0.1",
     "gh-pages": "^2.1.1",
     "prettier": "^2.0.5",
     "typescript": "^3.9.2"

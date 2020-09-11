@@ -10,10 +10,14 @@ import RalphSr from "../Images/RalphSr.gif";
 import { random } from "../Utilities/random";
 import { shuffle } from "../Utilities/shuffle";
 
-const ANIMATION_LENGTH = 6000;
+const ANIMATION_LENGTH = 3000;
 const GIFS = [Ralph, RalphSr, Ralphette];
 
-const GIF_SIZE = "65vh";
+const GIF_SIZE = 65;
+
+const VW = (value: number) => `${value}vw`;
+const VH = (value: number) => `${value}vh`;
+const S = (ms: number) => `${ms / 1000}s`;
 
 const Body = styled("div", ({ $theme }) => ({
   boxSizing: "border-box",
@@ -24,20 +28,23 @@ const Body = styled("div", ({ $theme }) => ({
   alignItems: "center",
   backgroundColor: $theme.colors.background,
   color: $theme.colors.foreground,
-  paddingTop: $theme.sizing.scale800,
-  paddingBottom: $theme.sizing.scale800,
-  paddingLeft: $theme.sizing.scale800,
-  paddingRight: $theme.sizing.scale800,
   overflow: "hidden",
 }));
 
-// @ts-ignore
-const ImageWrapper = styled("div", ({ $theme }) => ({
+const BodyInner = styled("div", ({ $theme }) => ({
   position: "absolute",
-  top: "40%",
-  left: `-${GIF_SIZE}`,
+  minHeight: "100%",
+  minWidth: "100%",
+  zIndex: 2,
+}));
+
+// @ts-ignore
+const ImageWrapper = styled("div", () => ({
+  position: "absolute",
+  top: "50%",
+  left: `-${VH(GIF_SIZE)}`,
   transform: "translate(0, -50%)",
-  animationDuration: `${ANIMATION_LENGTH / 1000}s`,
+  animationDuration: `${S(ANIMATION_LENGTH)}`,
   animationIterationCount: "1",
   animationTimingFunction: "linear",
   animationName: {
@@ -45,55 +52,72 @@ const ImageWrapper = styled("div", ({ $theme }) => ({
       transform: "translate(0, -50%)",
     },
     to: {
-      transform: `translate(calc(100vw + ${GIF_SIZE}), -50%)`,
+      transform: `translate(${VW(100 + GIF_SIZE)}, -50%)`,
     },
   },
   willChange: "transform",
-  width: `${GIF_SIZE}`,
-  height: `${GIF_SIZE}`,
+  width: `${VH(GIF_SIZE - 6.8)}`,
+  height: `${VH(GIF_SIZE)}`,
   zIndex: 2,
+  overflow: "hidden",
 }));
 
-const Cover = styled("div", ({ $theme }) => ({
+const Image = styled("img", () => ({
   position: "absolute",
-  height: `${GIF_SIZE}`,
-  width: "300vw",
-  left: "35%",
-  top: "0",
-  backgroundColor: $theme.colors.background,
+  top: 0,
+  left: 0,
+  height: `${VH(GIF_SIZE)}`,
+  width: `${VH(GIF_SIZE)}`,
 }));
 
-const LogoCover = styled("div", ({ $theme }) => ({
+//@ts-ignore
+const WinnerWrapper = styled("div", () => ({
   position: "absolute",
-  height: "240px",
-  width: "150px",
-  right: "-8px",
-  bottom: "0",
-  backgroundColor: $theme.colors.background,
+  top: 0,
+  left: 0,
+  width: 0,
+  height: "100vh",
+  overflow: "hidden",
+  animationFillMode: "forwards",
+  animationDelay: `${S(ANIMATION_LENGTH * 0.19)}`,
+  animationDuration: `${S(ANIMATION_LENGTH)}`,
+  animationIterationCount: "1",
+  animationTimingFunction: "linear",
+  animationName: {
+    from: {
+      width: 0,
+    },
+    to: {
+      width: `${VW(100 + GIF_SIZE)}`,
+    },
+  },
 }));
 
-const Image = styled("img", ({ $theme }) => ({
+const WinnerInnerWrapper = styled("div", () => ({
   position: "absolute",
-  height: `${GIF_SIZE}`,
-  width: `${GIF_SIZE}`,
+  top: 0,
+  left: 0,
+  width: "100vw",
+  height: "100vh",
 }));
 
 const Winner = styled("div", ({ $theme }) => ({
   position: "absolute",
   display: "block",
   textAlign: "center",
-  top: "40%",
+  top: "50%",
   left: "50%",
   transform: "translate(-50%,-50%)",
   ...$theme.typography.font1450,
-  fontSize: $theme.sizing.scale3200,
+  fontSize: "16vh",
+  lineHeight: "1.05em",
   fontFamily: "'Permanent Marker', cursive",
 }));
 
 const DrawButton = styled(Button, ({ $theme }) => ({
   position: "absolute",
   top: $theme.sizing.scale400,
-  right: $theme.sizing.scale2400,
+  right: $theme.sizing.scale400,
 }));
 
 const EntriesLink = withStyle<
@@ -117,20 +141,23 @@ const EntriesLink = withStyle<
 
 const LogoImage = styled("img", ({ $theme }) => ({
   position: "absolute",
+  top: "50%",
   left: "50%",
-  bottom: $theme.sizing.scale800,
-  transform: "translateX(-50%)",
-  height: "20vh",
+  transform: "translateX(-50%) translateY(-50%)",
+  height: "80vh",
+  opacity: 0.25,
   zIndex: 1,
 }));
 
 export const Home: React.FC = () => {
   const [currentWinner, setCurrentWinner] = useState<string>("");
+  const [previousWinner, setPreviousWinner] = useState<string | null>(null);
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [drawingInProgress, setDrawingInProgress] = useState<boolean>(false);
   const image = random(GIFS);
 
   const getNextWinner = () => {
+    setPreviousWinner(null);
     setDrawingInProgress(true);
     const hat = [];
     for (const entry of entries) {
@@ -153,6 +180,7 @@ export const Home: React.FC = () => {
     });
     setEntries(newEntries);
     setTimeout(() => {
+      setPreviousWinner(winner);
       setDrawingInProgress(false);
     }, ANIMATION_LENGTH);
   };
@@ -166,26 +194,33 @@ export const Home: React.FC = () => {
 
   return (
     <Body>
-      <Winner>{currentWinner}</Winner>
+      <BodyInner>
+        {drawingInProgress && (
+          <>
+            <WinnerWrapper>
+              <WinnerInnerWrapper>
+                <Winner>{currentWinner}</Winner>
+              </WinnerInnerWrapper>
+            </WinnerWrapper>
+            <ImageWrapper>
+              <Image src={image} />
+            </ImageWrapper>
+          </>
+        )}
 
-      {drawingInProgress && (
-        <ImageWrapper>
-          <Cover />
-          <Image src={image} />
-          <LogoCover />
-        </ImageWrapper>
-      )}
+        {Boolean(previousWinner) && <Winner>{previousWinner}</Winner>}
 
-      <DrawButton
-        disabled={ticketsRemaining <= 0 || drawingInProgress}
-        type="button"
-        size="compact"
-        onClick={getNextWinner}
-      >
-        Draw Name
-      </DrawButton>
+        <DrawButton
+          disabled={ticketsRemaining <= 0 || drawingInProgress}
+          type="button"
+          size="compact"
+          onClick={getNextWinner}
+        >
+          Draw Name
+        </DrawButton>
 
-      <EntriesLink to="/entries">Entries</EntriesLink>
+        <EntriesLink to="/entries">Entries</EntriesLink>
+      </BodyInner>
       <LogoImage src={GravelWorlds} />
     </Body>
   );
