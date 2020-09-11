@@ -15,8 +15,8 @@ const GIFS = [Ralph, RalphSr, Ralphette];
 
 const GIF_SIZE = 65;
 
-const VW = (value: number) => `${value}vw`;
 const VH = (value: number) => `${value}vh`;
+const VMAX = (value: number) => `${value}vmax`;
 const S = (ms: number) => `${ms / 1000}s`;
 
 const Body = styled("div", ({ $theme }) => ({
@@ -52,7 +52,7 @@ const ImageWrapper = styled("div", () => ({
       transform: "translate(0, -50%)",
     },
     to: {
-      transform: `translate(${VW(100 + GIF_SIZE)}, -50%)`,
+      transform: `translate(${VMAX(100 + GIF_SIZE)}, -50%)`,
     },
   },
   willChange: "transform",
@@ -70,16 +70,17 @@ const Image = styled("img", () => ({
   width: `${VH(GIF_SIZE)}`,
 }));
 
+const OFFSET = -25;
+
 //@ts-ignore
 const WinnerWrapper = styled("div", () => ({
   position: "absolute",
   top: 0,
-  left: 0,
+  left: `-${VH(GIF_SIZE + OFFSET)}`,
   width: 0,
   height: "100vh",
   overflow: "hidden",
   animationFillMode: "forwards",
-  animationDelay: `${S(ANIMATION_LENGTH * 0.19)}`,
   animationDuration: `${S(ANIMATION_LENGTH)}`,
   animationIterationCount: "1",
   animationTimingFunction: "linear",
@@ -88,7 +89,7 @@ const WinnerWrapper = styled("div", () => ({
       width: 0,
     },
     to: {
-      width: `${VW(100 + GIF_SIZE)}`,
+      width: `${VMAX(100 + GIF_SIZE)}`,
     },
   },
 }));
@@ -96,7 +97,7 @@ const WinnerWrapper = styled("div", () => ({
 const WinnerInnerWrapper = styled("div", () => ({
   position: "absolute",
   top: 0,
-  left: 0,
+  left: `${VH(GIF_SIZE + OFFSET)}`,
   width: "100vw",
   height: "100vh",
 }));
