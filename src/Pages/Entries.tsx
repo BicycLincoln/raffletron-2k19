@@ -92,7 +92,7 @@ export const Entries: React.FC = () => {
         step: ({ data }: any) => {
           const entry: any = {};
           const keys = Object.keys(data);
-          keys.map((key) => {
+          keys.forEach((key) => {
             entry[key.toLocaleLowerCase()] = data[key];
           });
           importEntries.push(entry);
