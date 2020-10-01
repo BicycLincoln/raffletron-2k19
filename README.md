@@ -1,3 +1,7 @@
+# Raffletron-2k19
+
+This is a pet project that was built to meet a specific use case for raffles put on by BicycLincoln. It has since morphed a bit to be able to support different types of raffle scenarios.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

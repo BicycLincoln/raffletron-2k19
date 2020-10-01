@@ -1,6 +1,6 @@
 import { styled, useStyletron, withStyle } from "baseui";
 import { Button, SIZE } from "baseui/button";
-import { FileUploader } from "baseui/file-uploader";
+import { FileUploader, StyledContentMessage } from "baseui/file-uploader";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
 import {
@@ -42,18 +42,26 @@ const HomeLink = withStyle<
   typeof StyledLink,
   React.ComponentProps<typeof StyledLink>
 >(StyledLink, ({ $theme }) => ({
-  position: "absolute",
+  position: "fixed",
   bottom: $theme.sizing.scale400,
   left: $theme.sizing.scale400,
-  color: $theme.colors.primary200,
+  color: $theme.colors.primary400,
 }));
 
-const Cell = withStyle(StyledTableBodyCell, ({ $theme }) => ({
+const Cell = withStyle(StyledTableBodyCell, () => ({
   verticalAlign: "center",
 }));
 
-const HeadCell = withStyle(StyledTableHeadCell, ({ $theme }) => ({
+const HeadCell = withStyle(StyledTableHeadCell, () => ({
   verticalAlign: "center",
+}));
+
+const Header = styled(H5, ({ $theme }) => ({
+  paddingBottom: $theme.sizing.scale400,
+  marginBottom: $theme.sizing.scale600,
+  borderBottomWidth: "1px",
+  borderBottomColor: $theme.colors.mono500,
+  borderBottomStyle: "solid",
 }));
 
 export const Entries: React.FC = () => {
@@ -62,6 +70,7 @@ export const Entries: React.FC = () => {
   const [name, setName] = useState<string>("");
   const [tickets, setTickets] = useState<string>("");
   const [importFile, setImportFile] = useState<File>();
+  const [importType, setImportType] = useState<"replace" | "append">("replace");
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [css, theme] = useStyletron();
 
@@ -100,7 +109,11 @@ export const Entries: React.FC = () => {
         complete: () => {
           setImporting(false);
           setEntries((entries) => {
-            return [...entries, ...importEntries];
+            if (importType === "append") {
+              return [...entries, ...importEntries];
+            } else {
+              return [...importEntries];
+            }
           });
         },
       });
@@ -134,8 +147,8 @@ export const Entries: React.FC = () => {
     <Body>
       <HomeLink to="/">Home</HomeLink>
       <div>
-        <H5>Add Entry</H5>
         <Form onSubmit={onSubmit}>
+          <Header>Add Entry</Header>
           <FormControl label="Name">
             <Input
               id="name"
@@ -161,12 +174,24 @@ export const Entries: React.FC = () => {
             Add Entry
           </Button>
         </Form>
-        <H5>Import CSV</H5>
         <Form onSubmit={onImportSubmit}>
+          <Header>Import</Header>
           <FormControl label="CSV with Entries">
             <>
               {!importFile && (
-                <FileUploader onDrop={onImportDrop} accept="text/csv" />
+                <FileUploader
+                  overrides={{
+                    ContentMessage: {
+                      component: () => (
+                        <StyledContentMessage>
+                          Attach your CSV
+                        </StyledContentMessage>
+                      ),
+                    },
+                  }}
+                  onDrop={onImportDrop}
+                  accept="text/csv"
+                />
               )}
               {!!importFile && (
                 <div
@@ -188,10 +213,27 @@ export const Entries: React.FC = () => {
           <Button
             isLoading={importing}
             disabled={importing}
+            onClick={() => setImportType("replace")}
             type="submit"
             size="compact"
           >
-            Import File
+            Import &amp; Replace
+          </Button>
+          <Button
+            $style={{ marginLeft: theme.sizing.scale100 }}
+            isLoading={importing}
+            disabled={importing}
+            onClick={() => setImportType("append")}
+            type="submit"
+            size="compact"
+          >
+            Import &amp; Append
+          </Button>
+        </Form>
+        <Form>
+          <Header>Remove Entries</Header>
+          <Button size="compact" onClick={() => onRemoveAll()}>
+            Remove All Entries
           </Button>
         </Form>
       </div>
@@ -220,13 +262,6 @@ export const Entries: React.FC = () => {
             </StyledTableBody>
           </StyledTable>
         </StyledRoot>
-        <Button
-          $style={{ marginTop: theme.sizing.scale400 }}
-          size="compact"
-          onClick={() => onRemoveAll()}
-        >
-          Remove All Entries
-        </Button>
       </TableWrapper>
     </Body>
   );

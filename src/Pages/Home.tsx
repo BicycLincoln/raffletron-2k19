@@ -4,14 +4,53 @@ import React, { useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
 import GravelWorlds from "../Images/GravelWorlds.png";
-import Ralph from "../Images/Ralph.gif";
-import Ralphette from "../Images/Ralphette.gif";
-import RalphSr from "../Images/RalphSr.gif";
-import { random } from "../Utilities/random";
+// import Ralph from "../Images/Ralph.gif";
+// import Ralphette from "../Images/Ralphette.gif";
+// import RalphSr from "../Images/RalphSr.gif";
+import Shark from "../Images/Shark.gif";
+import Dog from "../Images/Dog.gif";
+import Octopus from "../Images/Octopus.gif";
+import Mouse from "../Images/Mouse.gif";
+import Squirrel from "../Images/Squirrel.gif";
+import Cat from "../Images/Cat.gif";
+import { createRandomGenerator } from "../Utilities/createRandomGenerator";
 import { shuffle } from "../Utilities/shuffle";
+import { random } from "../Utilities/random";
+
+type IDirection = "left" | "right";
+
+interface IGif {
+  direction: IDirection;
+  url: string;
+}
 
 const ANIMATION_LENGTH = 3000;
-const GIFS = [Ralph, RalphSr, Ralphette];
+const GIFS: IGif[] = [
+  {
+    direction: "left",
+    url: Shark,
+  },
+  {
+    direction: "right",
+    url: Dog,
+  },
+  {
+    direction: "left",
+    url: Octopus,
+  },
+  {
+    direction: "right",
+    url: Mouse,
+  },
+  {
+    direction: "right",
+    url: Squirrel,
+  },
+  {
+    direction: "right",
+    url: Cat,
+  },
+];
 
 const GIF_SIZE = 65;
 
@@ -39,29 +78,34 @@ const BodyInner = styled("div", () => ({
   zIndex: 2,
 }));
 
-// @ts-ignore
-const ImageWrapper = styled("div", () => ({
-  position: "absolute",
-  top: "50%",
-  left: `-${VH(GIF_SIZE)}`,
-  transform: "translate(0, -50%)",
-  animationDuration: `${S(ANIMATION_LENGTH)}`,
-  animationIterationCount: "1",
-  animationTimingFunction: "linear",
-  animationName: {
-    from: {
-      transform: "translate(0, -50%)",
+const ImageWrapper = styled(
+  "div",
+  // @ts-ignore
+  ({ $direction = "left" }: { $direction?: IDirection }) => ({
+    position: "absolute",
+    top: "50%",
+    [$direction]: `-${VH(GIF_SIZE)}`,
+    transform: "translate(0, -50%)",
+    animationDuration: `${S(ANIMATION_LENGTH)}`,
+    animationIterationCount: "1",
+    animationTimingFunction: "linear",
+    animationName: {
+      from: {
+        transform: "translate(0, -50%)",
+      },
+      to: {
+        transform: `translate(${VMAX(
+          ($direction === "right" ? -1 : 1) * (100 + GIF_SIZE)
+        )}, -50%)`,
+      },
     },
-    to: {
-      transform: `translate(${VMAX(100 + GIF_SIZE)}, -50%)`,
-    },
-  },
-  willChange: "transform",
-  width: `${VH(GIF_SIZE - 6.8)}`,
-  height: `${VH(GIF_SIZE)}`,
-  zIndex: 2,
-  overflow: "hidden",
-}));
+    willChange: "transform",
+    width: `${VH(GIF_SIZE - 6.8)}`,
+    height: `${VH(GIF_SIZE)}`,
+    zIndex: 2,
+    overflow: "hidden",
+  })
+);
 
 const Image = styled("img", () => ({
   position: "absolute",
@@ -73,35 +117,41 @@ const Image = styled("img", () => ({
 
 const OFFSET = -25;
 
-//@ts-ignore
-const WinnerWrapper = styled("div", () => ({
-  position: "absolute",
-  top: 0,
-  left: `-${VH(GIF_SIZE + OFFSET)}`,
-  width: 0,
-  height: "100vh",
-  overflow: "hidden",
-  animationFillMode: "forwards",
-  animationDuration: `${S(ANIMATION_LENGTH)}`,
-  animationIterationCount: "1",
-  animationTimingFunction: "linear",
-  animationName: {
-    from: {
-      width: 0,
+const WinnerWrapper = styled(
+  "div",
+  //@ts-ignore
+  ({ $direction = "left" }: { $direction?: IDirection }) => ({
+    position: "absolute",
+    top: 0,
+    [$direction]: `-${VH(GIF_SIZE + OFFSET)}`,
+    width: 0,
+    height: "100vh",
+    overflow: "hidden",
+    animationFillMode: "forwards",
+    animationDuration: `${S(ANIMATION_LENGTH)}`,
+    animationIterationCount: "1",
+    animationTimingFunction: "linear",
+    animationName: {
+      from: {
+        width: 0,
+      },
+      to: {
+        width: `${VMAX(100 + GIF_SIZE)}`,
+      },
     },
-    to: {
-      width: `${VMAX(100 + GIF_SIZE)}`,
-    },
-  },
-}));
+  })
+);
 
-const WinnerInnerWrapper = styled("div", () => ({
-  position: "absolute",
-  top: 0,
-  left: `${VH(GIF_SIZE + OFFSET)}`,
-  width: "100vw",
-  height: "100vh",
-}));
+const WinnerInnerWrapper = styled(
+  "div",
+  ({ $direction = "left" }: { $direction?: IDirection }) => ({
+    position: "absolute",
+    top: 0,
+    [$direction]: `${VH(GIF_SIZE + OFFSET)}`,
+    width: "100vw",
+    height: "100vh",
+  })
+);
 
 const Winner = styled("div", ({ $theme }) => ({
   position: "absolute",
@@ -113,7 +163,8 @@ const Winner = styled("div", ({ $theme }) => ({
   ...$theme.typography.font1450,
   fontSize: `${VMIN(16)}`,
   lineHeight: "1.05em",
-  fontFamily: "'Permanent Marker', cursive",
+  fontFamily: "'Bangers', cursive",
+  // fontFamily: "'Permanent Marker', cursive",
 }));
 
 const DrawButton = styled(Button, ({ $theme }) => ({
@@ -129,7 +180,7 @@ const EntriesLink = withStyle<
   position: "absolute",
   bottom: $theme.sizing.scale400,
   right: $theme.sizing.scale400,
-  color: $theme.colors.primary200,
+  color: $theme.colors.primary400,
 }));
 
 // keeping in here for later
@@ -151,12 +202,14 @@ const LogoImage = styled("img", ({ $theme }) => ({
   zIndex: 1,
 }));
 
+const getRandom = createRandomGenerator(GIFS);
+
 export const Home: React.FC = () => {
   const [currentWinner, setCurrentWinner] = useState<string>("");
   const [previousWinner, setPreviousWinner] = useState<string | null>(null);
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [drawingInProgress, setDrawingInProgress] = useState<boolean>(false);
-  const image = random(GIFS);
+  const gif = getRandom();
 
   const getNextWinner = () => {
     setPreviousWinner(null);
@@ -199,13 +252,13 @@ export const Home: React.FC = () => {
       <BodyInner>
         {drawingInProgress && (
           <>
-            <WinnerWrapper>
-              <WinnerInnerWrapper>
+            <WinnerWrapper $direction={gif.direction}>
+              <WinnerInnerWrapper $direction={gif.direction}>
                 <Winner>{currentWinner}</Winner>
               </WinnerInnerWrapper>
             </WinnerWrapper>
-            <ImageWrapper>
-              <Image src={image} />
+            <ImageWrapper $direction={gif.direction}>
+              <Image src={gif.url} />
             </ImageWrapper>
           </>
         )}
@@ -223,7 +276,7 @@ export const Home: React.FC = () => {
 
         <EntriesLink to="/entries">Entries</EntriesLink>
       </BodyInner>
-      <LogoImage src={GravelWorlds} />
+      <LogoImage $style={{ display: "none" }} src={GravelWorlds} />
     </Body>
   );
 };
