@@ -1,26 +1,33 @@
 {
   "files": {
     "main.css": "/raffletron-2k19/static/css/main.34de6062.chunk.css",
-    "main.js": "/raffletron-2k19/static/js/main.cdda63d3.chunk.js",
-    "main.js.map": "/raffletron-2k19/static/js/main.cdda63d3.chunk.js.map",
+    "main.js": "/raffletron-2k19/static/js/main.8591825e.chunk.js",
+    "main.js.map": "/raffletron-2k19/static/js/main.8591825e.chunk.js.map",
     "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.88a3cb69.js",
     "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.88a3cb69.js.map",
-    "static/js/2.49e2f5b5.chunk.js": "/raffletron-2k19/static/js/2.49e2f5b5.chunk.js",
-    "static/js/2.49e2f5b5.chunk.js.map": "/raffletron-2k19/static/js/2.49e2f5b5.chunk.js.map",
+    "static/js/2.74333b2b.chunk.js": "/raffletron-2k19/static/js/2.74333b2b.chunk.js",
+    "static/js/2.74333b2b.chunk.js.map": "/raffletron-2k19/static/js/2.74333b2b.chunk.js.map",
     "index.html": "/raffletron-2k19/index.html",
-    "precache-manifest.033d5314c4015287fa999310a91537e3.js": "/raffletron-2k19/precache-manifest.033d5314c4015287fa999310a91537e3.js",
+    "precache-manifest.d2deba91b766e902871d77e02b4f8293.js": "/raffletron-2k19/precache-manifest.d2deba91b766e902871d77e02b4f8293.js",
     "service-worker.js": "/raffletron-2k19/service-worker.js",
     "static/css/main.34de6062.chunk.css.map": "/raffletron-2k19/static/css/main.34de6062.chunk.css.map",
-    "static/js/2.49e2f5b5.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.49e2f5b5.chunk.js.LICENSE.txt",
+    "static/js/2.74333b2b.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.74333b2b.chunk.js.LICENSE.txt",
+    "static/media/BicycLincoln-Cog.svg": "/raffletron-2k19/static/media/BicycLincoln-Cog.6c6e3055.svg",
+    "static/media/Cat.gif": "/raffletron-2k19/static/media/Cat.a3449273.gif",
+    "static/media/Dog.gif": "/raffletron-2k19/static/media/Dog.0821437d.gif",
     "static/media/GravelWorlds.png": "/raffletron-2k19/static/media/GravelWorlds.30bc2a0b.png",
+    "static/media/Mouse.gif": "/raffletron-2k19/static/media/Mouse.07539b23.gif",
+    "static/media/Octopus.gif": "/raffletron-2k19/static/media/Octopus.609f71f2.gif",
     "static/media/Ralph.gif": "/raffletron-2k19/static/media/Ralph.8bdf1bcc.gif",
     "static/media/RalphSr.gif": "/raffletron-2k19/static/media/RalphSr.516831cd.gif",
-    "static/media/Ralphette.gif": "/raffletron-2k19/static/media/Ralphette.e29bc649.gif"
+    "static/media/Ralphette.gif": "/raffletron-2k19/static/media/Ralphette.e29bc649.gif",
+    "static/media/Shark.gif": "/raffletron-2k19/static/media/Shark.cc0bd08a.gif",
+    "static/media/Squirrel.gif": "/raffletron-2k19/static/media/Squirrel.7db10a84.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.88a3cb69.js",
-    "static/js/2.49e2f5b5.chunk.js",
+    "static/js/2.74333b2b.chunk.js",
     "static/css/main.34de6062.chunk.css",
-    "static/js/main.cdda63d3.chunk.js"
+    "static/js/main.8591825e.chunk.js"
   ]
 }
