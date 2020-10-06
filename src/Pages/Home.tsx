@@ -3,10 +3,10 @@ import { Button } from "baseui/button";
 import React, { useState } from "react";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
-import GravelWorlds from "../Images/GravelWorlds.png";
-// import Ralph from "../Images/Ralph.gif";
-// import Ralphette from "../Images/Ralphette.gif";
-// import RalphSr from "../Images/RalphSr.gif";
+import BicycLincoln from "../Images/BicycLincoln-Cog.svg";
+import Ralph from "../Images/Ralph.gif";
+import Ralphette from "../Images/Ralphette.gif";
+import RalphSr from "../Images/RalphSr.gif";
 import Shark from "../Images/Shark.gif";
 import Dog from "../Images/Dog.gif";
 import Octopus from "../Images/Octopus.gif";
@@ -22,6 +22,7 @@ type IDirection = "left" | "right";
 interface IGif {
   direction: IDirection;
   url: string;
+  enabled: boolean;
 }
 
 const ANIMATION_LENGTH = 3000;
@@ -29,26 +30,47 @@ const GIFS: IGif[] = [
   {
     direction: "left",
     url: Shark,
+    enabled: false,
   },
   {
     direction: "right",
     url: Dog,
+    enabled: false,
   },
   {
     direction: "left",
     url: Octopus,
+    enabled: false,
   },
   {
     direction: "right",
     url: Mouse,
+    enabled: false,
   },
   {
     direction: "right",
     url: Squirrel,
+    enabled: false,
   },
   {
     direction: "right",
     url: Cat,
+    enabled: false,
+  },
+  {
+    direction: "left",
+    url: Ralph,
+    enabled: true,
+  },
+  {
+    direction: "left",
+    url: Ralphette,
+    enabled: true,
+  },
+  {
+    direction: "left",
+    url: RalphSr,
+    enabled: true,
   },
 ];
 
@@ -202,7 +224,7 @@ const LogoImage = styled("img", ({ $theme }) => ({
   zIndex: 1,
 }));
 
-const getRandom = createRandomGenerator(GIFS);
+const getRandom = createRandomGenerator(GIFS.filter((gif) => gif.enabled));
 
 export const Home: React.FC = () => {
   const [currentWinner, setCurrentWinner] = useState<string>("");
@@ -276,7 +298,7 @@ export const Home: React.FC = () => {
 
         <EntriesLink to="/entries">Entries</EntriesLink>
       </BodyInner>
-      <LogoImage $style={{ display: "none" }} src={GravelWorlds} />
+      <LogoImage src={BicycLincoln} />
     </Body>
   );
 };
