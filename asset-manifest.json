@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/raffletron-2k19/static/css/main.34de6062.chunk.css",
-    "main.js": "/raffletron-2k19/static/js/main.64f85edc.chunk.js",
-    "main.js.map": "/raffletron-2k19/static/js/main.64f85edc.chunk.js.map",
+    "main.js": "/raffletron-2k19/static/js/main.2a1c60ac.chunk.js",
+    "main.js.map": "/raffletron-2k19/static/js/main.2a1c60ac.chunk.js.map",
     "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.88a3cb69.js",
     "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.88a3cb69.js.map",
     "static/js/2.d630649a.chunk.js": "/raffletron-2k19/static/js/2.d630649a.chunk.js",
     "static/js/2.d630649a.chunk.js.map": "/raffletron-2k19/static/js/2.d630649a.chunk.js.map",
     "index.html": "/raffletron-2k19/index.html",
-    "precache-manifest.1089c941e32aebaf06afcc3f8d0a7c8f.js": "/raffletron-2k19/precache-manifest.1089c941e32aebaf06afcc3f8d0a7c8f.js",
+    "precache-manifest.a893e423f06bd2cf6d841cb13e30181d.js": "/raffletron-2k19/precache-manifest.a893e423f06bd2cf6d841cb13e30181d.js",
     "service-worker.js": "/raffletron-2k19/service-worker.js",
     "static/css/main.34de6062.chunk.css.map": "/raffletron-2k19/static/css/main.34de6062.chunk.css.map",
     "static/js/2.d630649a.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.d630649a.chunk.js.LICENSE.txt",
@@ -28,6 +28,6 @@
     "static/js/runtime-main.88a3cb69.js",
     "static/js/2.d630649a.chunk.js",
     "static/css/main.34de6062.chunk.css",
-    "static/js/main.64f85edc.chunk.js"
+    "static/js/main.2a1c60ac.chunk.js"
   ]
 }
