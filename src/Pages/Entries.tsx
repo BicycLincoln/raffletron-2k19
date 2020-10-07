@@ -15,7 +15,8 @@ import {
 } from "baseui/table-semantic";
 import { H5 } from "baseui/typography";
 import { parse } from "papaparse";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
 
@@ -65,6 +66,7 @@ const Header = styled(H5, ({ $theme }) => ({
 }));
 
 export const Entries: React.FC = () => {
+  const history = useHistory();
   const nameInputRef = useRef<any>(null);
   const [importing, setImporting] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
@@ -143,9 +145,26 @@ export const Entries: React.FC = () => {
     setEntries([]);
   };
 
+  useEffect(() => {
+    const onKeyUp = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === "h") {
+        e.preventDefault();
+        history.push("/");
+      }
+    };
+
+    window.addEventListener("keydown", onKeyUp);
+    // Remove event listeners on cleanup
+    return () => {
+      window.removeEventListener("keydown", onKeyUp);
+    };
+  }, [history]);
+
   return (
     <Body>
-      <HomeLink to="/">Home</HomeLink>
+      <HomeLink $style={{ display: "none" }} to="/">
+        Home
+      </HomeLink>
       <div>
         <Form onSubmit={onSubmit}>
           <Header>Add Entry</Header>

@@ -1,21 +1,22 @@
-import { styled, withStyle } from "baseui";
+import { styled, useStyletron, withStyle } from "baseui";
 import { Button } from "baseui/button";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
 import BicycLincoln from "../Images/BicycLincoln-Cog.svg";
+import Cat from "../Images/Cat.gif";
+import Dog from "../Images/Dog.gif";
+import Mouse from "../Images/Mouse.gif";
+import Octopus from "../Images/Octopus.gif";
 import Ralph from "../Images/Ralph.gif";
 import Ralphette from "../Images/Ralphette.gif";
 import RalphSr from "../Images/RalphSr.gif";
 import Shark from "../Images/Shark.gif";
-import Dog from "../Images/Dog.gif";
-import Octopus from "../Images/Octopus.gif";
-import Mouse from "../Images/Mouse.gif";
 import Squirrel from "../Images/Squirrel.gif";
-import Cat from "../Images/Cat.gif";
 import { createRandomGenerator } from "../Utilities/createRandomGenerator";
-import { shuffle } from "../Utilities/shuffle";
 import { random } from "../Utilities/random";
+import { shuffle } from "../Utilities/shuffle";
 
 type IDirection = "left" | "right";
 
@@ -227,40 +228,45 @@ const LogoImage = styled("img", ({ $theme }) => ({
 const getRandom = createRandomGenerator(GIFS.filter((gif) => gif.enabled));
 
 export const Home: React.FC = () => {
+  const history = useHistory();
+  const [css] = useStyletron();
   const [currentWinner, setCurrentWinner] = useState<string>("");
   const [previousWinner, setPreviousWinner] = useState<string | null>(null);
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [drawingInProgress, setDrawingInProgress] = useState<boolean>(false);
   const gif = getRandom();
 
-  const getNextWinner = () => {
+  const getNextWinner = useCallback(() => {
     setPreviousWinner(null);
     setDrawingInProgress(true);
-    const hat = [];
-    for (const entry of entries) {
-      const entries = entry.entries;
-      const name = entry.name;
-      for (let i = 0; i < entries; ++i) {
-        hat.push(name);
+    setEntries((entries) => {
+      const hat = [];
+      for (const entry of entries) {
+        for (let i = 0; i < entry.entries; ++i) {
+          hat.push(entry.name);
+        }
       }
-    }
-    const winner = random(shuffle(hat));
-    setCurrentWinner(winner);
+      const winner = random(shuffle(hat));
+      setCurrentWinner(winner);
 
-    const newEntries = [...entries].map((entry) => {
-      return entry.name === winner
-        ? {
-            ...entry,
-            entries: 0,
-          }
-        : entry;
+      const newEntries = [...entries].map((entry) => {
+        return entry.name === winner
+          ? {
+              ...entry,
+              entries: 0,
+            }
+          : entry;
+      });
+
+      setTimeout(() => {
+        setPreviousWinner(winner);
+        setDrawingInProgress(false);
+      }, ANIMATION_LENGTH);
+
+      return newEntries;
     });
-    setEntries(newEntries);
-    setTimeout(() => {
-      setPreviousWinner(winner);
-      setDrawingInProgress(false);
-    }, ANIMATION_LENGTH);
-  };
+    // eslint-disable-next-line
+  }, []);
 
   const entriesRemaining =
     entries.length > 0
@@ -268,6 +274,27 @@ export const Home: React.FC = () => {
           .map((entry) => parseInt(entry.entries, 10))
           .reduce((prev, current) => prev + current)
       : 0;
+
+  const onKeyUp = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        getNextWinner();
+      } else if (e.ctrlKey && e.key === "e") {
+        e.preventDefault();
+        history.push("/entries");
+      }
+    },
+    [getNextWinner, history]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyUp);
+    // Remove event listeners on cleanup
+    return () => {
+      window.removeEventListener("keydown", onKeyUp);
+    };
+  }, [onKeyUp]);
 
   return (
     <Body>
@@ -287,16 +314,20 @@ export const Home: React.FC = () => {
 
         {Boolean(previousWinner) && <Winner>{previousWinner}</Winner>}
 
-        <DrawButton
-          disabled={entriesRemaining <= 0 || drawingInProgress}
-          type="button"
-          size="compact"
-          onClick={getNextWinner}
-        >
-          Draw Name
-        </DrawButton>
+        <div className={css({ display: "none" })}>
+          <DrawButton
+            disabled={entriesRemaining <= 0 || drawingInProgress}
+            type="button"
+            size="compact"
+            onClick={getNextWinner}
+          >
+            Draw Name
+          </DrawButton>
+        </div>
 
-        <EntriesLink to="/entries">Entries</EntriesLink>
+        <EntriesLink $style={{ display: "none" }} to="/entries">
+          Entries
+        </EntriesLink>
       </BodyInner>
       <LogoImage src={BicycLincoln} />
     </Body>
