@@ -185,7 +185,7 @@ const Winner = styled("div", ({ $theme }) => ({
   transform: "translate(-50%,-50%)",
   ...$theme.typography.font1450,
   fontSize: `${VMIN(16)}`,
-  lineHeight: "1.05em",
+  lineHeight: "0.875",
   fontFamily: "'Bangers', cursive",
   // fontFamily: "'Permanent Marker', cursive",
 }));
@@ -231,42 +231,37 @@ export const Home: React.FC = () => {
   const history = useHistory();
   const [css] = useStyletron();
   const [currentWinner, setCurrentWinner] = useState<string>("");
-  const [previousWinner, setPreviousWinner] = useState<string | null>(null);
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [drawingInProgress, setDrawingInProgress] = useState<boolean>(false);
   const gif = getRandom();
 
   const getNextWinner = useCallback(() => {
-    setPreviousWinner(null);
-    setDrawingInProgress(true);
-    setEntries((entries) => {
-      const hat = [];
-      for (const entry of entries) {
-        for (let i = 0; i < entry.entries; ++i) {
-          hat.push(entry.name);
+    if (!drawingInProgress) {
+      setDrawingInProgress(true);
+      setEntries((entries) => {
+        const hat = [];
+        for (const entry of entries) {
+          for (let i = 0; i < entry.entries; ++i) {
+            hat.push(entry.name);
+          }
         }
-      }
-      const winner = random(shuffle(hat));
-      setCurrentWinner(winner);
+        const winner = random(shuffle(hat));
+        setCurrentWinner(winner);
 
-      const newEntries = [...entries].map((entry) => {
-        return entry.name === winner
-          ? {
-              ...entry,
-              entries: 0,
-            }
-          : entry;
+        const newEntries = [...entries].map((entry) => {
+          return entry.name === winner
+            ? {
+                ...entry,
+                entries: 0,
+              }
+            : entry;
+        });
+
+        return newEntries;
       });
-
-      setTimeout(() => {
-        setPreviousWinner(winner);
-        setDrawingInProgress(false);
-      }, ANIMATION_LENGTH);
-
-      return newEntries;
-    });
+    }
     // eslint-disable-next-line
-  }, []);
+  }, [drawingInProgress]);
 
   const entriesRemaining =
     entries.length > 0
@@ -277,7 +272,7 @@ export const Home: React.FC = () => {
 
   const onKeyUp = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && entriesRemaining > 0) {
         e.preventDefault();
         getNextWinner();
       } else if (e.ctrlKey && e.key === "e") {
@@ -285,8 +280,12 @@ export const Home: React.FC = () => {
         history.push("/entries");
       }
     },
-    [getNextWinner, history]
+    [getNextWinner, entriesRemaining, history]
   );
+
+  const onAnimationEnd = useCallback((e) => {
+    setDrawingInProgress(false);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("keydown", onKeyUp);
@@ -306,13 +305,16 @@ export const Home: React.FC = () => {
                 <Winner>{currentWinner}</Winner>
               </WinnerInnerWrapper>
             </WinnerWrapper>
-            <ImageWrapper $direction={gif.direction}>
+            <ImageWrapper
+              onAnimationEnd={onAnimationEnd}
+              $direction={gif.direction}
+            >
               <Image src={gif.url} />
             </ImageWrapper>
           </>
         )}
 
-        {Boolean(previousWinner) && <Winner>{previousWinner}</Winner>}
+        {!drawingInProgress && <Winner>{currentWinner}</Winner>}
 
         <div className={css({ display: "none" })}>
           <DrawButton
