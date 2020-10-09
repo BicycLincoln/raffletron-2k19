@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "4dbc8f6ff3b379c4307928217537a1ab",
+    "revision": "7411caaa42a54cbace5161acb63bc82d",
     "url": "/raffletron-2k19/index.html"
   },
   {
-    "revision": "48f3b1509a53f858795d",
+    "revision": "750fc344a18184704e70",
     "url": "/raffletron-2k19/static/css/main.34de6062.chunk.css"
   },
   {
-    "revision": "435c42d0c483cdeb0e36",
-    "url": "/raffletron-2k19/static/js/2.d630649a.chunk.js"
+    "revision": "9ada7eca8f5abe18f55d",
+    "url": "/raffletron-2k19/static/js/2.7ff2bdf3.chunk.js"
   },
   {
     "revision": "a5a4149a938b394962bf238e6c1aaf1a",
-    "url": "/raffletron-2k19/static/js/2.d630649a.chunk.js.LICENSE.txt"
+    "url": "/raffletron-2k19/static/js/2.7ff2bdf3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "48f3b1509a53f858795d",
-    "url": "/raffletron-2k19/static/js/main.2a1c60ac.chunk.js"
+    "revision": "750fc344a18184704e70",
+    "url": "/raffletron-2k19/static/js/main.1cd28231.chunk.js"
   },
   {
     "revision": "e8238bb375fd1dae9537",
@@ -34,10 +34,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "0821437d373cc9f199656cec085c3ab7",
     "url": "/raffletron-2k19/static/media/Dog.0821437d.gif"
-  },
-  {
-    "revision": "30bc2a0b6bbc1f22a158890268f021e4",
-    "url": "/raffletron-2k19/static/media/GravelWorlds.30bc2a0b.png"
   },
   {
     "revision": "07539b23e5f4994d3cd32d3deb1b2f27",
