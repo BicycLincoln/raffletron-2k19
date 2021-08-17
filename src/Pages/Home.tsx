@@ -4,7 +4,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
-import BicycLincoln from "../Images/BicycLincoln-Cog.svg";
+import GravelWorlds0 from "../Images/gravelworlds_0.png";
+import GravelWorlds1 from "../Images/gravelworlds_1.png";
+import GravelWorlds2 from "../Images/gravelworlds_2.png";
+import GravelWorlds3 from "../Images/gravelworlds_3.png";
 import Cat from "../Images/Cat.gif";
 import Dog from "../Images/Dog.gif";
 import Mouse from "../Images/Mouse.gif";
@@ -206,34 +209,37 @@ const EntriesLink = withStyle<
   color: $theme.colors.primary400,
 }));
 
-// keeping in here for later
-// const StyledBicycLincoln = styled(BicycLincoln, ({ $theme }) => ({
-//   position: "absolute",
-//   bottom: $theme.sizing.scale800,
-//   left: "50%",
-//   transform: "translateX(-50%)",
-//   height: "40px",
-// }));
-
-const LogoImage = styled("img", ({ $theme }) => ({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translateX(-50%) translateY(-50%)",
-  height: "80vh",
-  opacity: 0.25,
-  zIndex: 1,
-}));
+const LogoImage = styled<{ $visible: boolean }, "img">(
+  "img",
+  ({ $theme, $visible }) => ({
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translateX(-50%) translateY(-50%)",
+    height: "80vh",
+    opacity: $visible ? 0.25 : 0,
+    zIndex: 1,
+    transition: "opacity 2500ms",
+  })
+);
 
 const getRandom = createRandomGenerator(GIFS.filter((gif) => gif.enabled));
 
 export const Home: React.FC = () => {
+  const [image, setImage] = useLocalState<number>("image", 0);
+  useEffect(() => {
+    setTimeout(() => {
+      setImage((image + 1) % 4);
+    }, 7_500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [image]);
+
   const history = useHistory();
   const [css] = useStyletron();
   const [currentWinner, setCurrentWinner] = useState<string>("");
+  const [gif, setGif] = useState<any>(getRandom());
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [drawingInProgress, setDrawingInProgress] = useState<boolean>(false);
-  const gif = getRandom();
 
   const getNextWinner = useCallback(() => {
     if (!drawingInProgress) {
@@ -246,13 +252,14 @@ export const Home: React.FC = () => {
           }
         }
         const winner = random(shuffle(hat));
+        setGif(getRandom());
         setCurrentWinner(winner);
 
         const newEntries = [...entries].map((entry) => {
           return entry.name === winner
             ? {
                 ...entry,
-                entries: 0,
+                entries: --entry.entries,
               }
             : entry;
         });
@@ -272,7 +279,10 @@ export const Home: React.FC = () => {
 
   const onKeyUp = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Enter" && entriesRemaining > 0) {
+      if (
+        (e.key === "Spacebar" || e.key === " " || e.key === "Enter") &&
+        entriesRemaining > 0
+      ) {
         e.preventDefault();
         getNextWinner();
       } else if (e.ctrlKey && e.key === "e") {
@@ -331,7 +341,10 @@ export const Home: React.FC = () => {
           Entries
         </EntriesLink>
       </BodyInner>
-      <LogoImage src={BicycLincoln} />
+      <LogoImage $visible={image === 0} src={GravelWorlds0} />
+      <LogoImage $visible={image === 1} src={GravelWorlds1} />
+      <LogoImage $visible={image === 2} src={GravelWorlds2} />
+      <LogoImage $visible={image === 3} src={GravelWorlds3} />
     </Body>
   );
 };
