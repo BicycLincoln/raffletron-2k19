@@ -4,10 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
-import GravelWorlds0 from "../Images/gravelworlds_0.png";
-import GravelWorlds1 from "../Images/gravelworlds_1.png";
-import GravelWorlds2 from "../Images/gravelworlds_2.png";
-import GravelWorlds3 from "../Images/gravelworlds_3.png";
+import BicycLincoln from "../Images/BicycLincoln-Cog.svg";
 import Cat from "../Images/Cat.gif";
 import Dog from "../Images/Dog.gif";
 import Mouse from "../Images/Mouse.gif";
@@ -229,7 +226,7 @@ export const Home: React.FC = () => {
   const [image, setImage] = useLocalState<number>("image", 0);
   useEffect(() => {
     setTimeout(() => {
-      setImage((image + 1) % 4);
+      setImage((image + 1) % 1);
     }, 7_500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image]);
@@ -341,10 +338,7 @@ export const Home: React.FC = () => {
           Entries
         </EntriesLink>
       </BodyInner>
-      <LogoImage $visible={image === 0} src={GravelWorlds0} />
-      <LogoImage $visible={image === 1} src={GravelWorlds1} />
-      <LogoImage $visible={image === 2} src={GravelWorlds2} />
-      <LogoImage $visible={image === 3} src={GravelWorlds3} />
+      <LogoImage $visible={image === 0} src={BicycLincoln} />
     </Body>
   );
 };
