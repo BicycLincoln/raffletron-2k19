@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/raffletron-2k19/static/css/main.4a4137e4.chunk.css",
-    "main.js": "/raffletron-2k19/static/js/main.c611d9fa.chunk.js",
-    "main.js.map": "/raffletron-2k19/static/js/main.c611d9fa.chunk.js.map",
+    "main.js": "/raffletron-2k19/static/js/main.9711003d.chunk.js",
+    "main.js.map": "/raffletron-2k19/static/js/main.9711003d.chunk.js.map",
     "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.04f18e50.js",
     "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.04f18e50.js.map",
-    "static/js/2.d936824a.chunk.js": "/raffletron-2k19/static/js/2.d936824a.chunk.js",
-    "static/js/2.d936824a.chunk.js.map": "/raffletron-2k19/static/js/2.d936824a.chunk.js.map",
+    "static/js/2.5bf3f504.chunk.js": "/raffletron-2k19/static/js/2.5bf3f504.chunk.js",
+    "static/js/2.5bf3f504.chunk.js.map": "/raffletron-2k19/static/js/2.5bf3f504.chunk.js.map",
     "index.html": "/raffletron-2k19/index.html",
     "static/css/main.4a4137e4.chunk.css.map": "/raffletron-2k19/static/css/main.4a4137e4.chunk.css.map",
-    "static/js/2.d936824a.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.d936824a.chunk.js.LICENSE.txt",
-    "static/media/BicycLincoln-Cog.79e0af79.svg": "/raffletron-2k19/static/media/BicycLincoln-Cog.79e0af79.svg",
+    "static/js/2.5bf3f504.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.5bf3f504.chunk.js.LICENSE.txt",
     "static/media/Cat.c89c7dc3.gif": "/raffletron-2k19/static/media/Cat.c89c7dc3.gif",
     "static/media/Dog.e88f1d55.gif": "/raffletron-2k19/static/media/Dog.e88f1d55.gif",
+    "static/media/GarminGravelWorlds.4740469a.png": "/raffletron-2k19/static/media/GarminGravelWorlds.4740469a.png",
     "static/media/GravelWorlds.d1c783c1.png": "/raffletron-2k19/static/media/GravelWorlds.d1c783c1.png",
     "static/media/Mouse.1ddb0aeb.gif": "/raffletron-2k19/static/media/Mouse.1ddb0aeb.gif",
     "static/media/Octopus.3e612d94.gif": "/raffletron-2k19/static/media/Octopus.3e612d94.gif",
@@ -24,8 +24,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.04f18e50.js",
-    "static/js/2.d936824a.chunk.js",
+    "static/js/2.5bf3f504.chunk.js",
     "static/css/main.4a4137e4.chunk.css",
-    "static/js/main.c611d9fa.chunk.js"
+    "static/js/main.9711003d.chunk.js"
   ]
 }
