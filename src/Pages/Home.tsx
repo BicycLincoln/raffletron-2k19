@@ -4,9 +4,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
-import BicycLincoln from "../Images/BicycLincoln-Cog.svg";
 import Cat from "../Images/Cat.gif";
 import Dog from "../Images/Dog.gif";
+import GarminGravelWorlds from "../Images/GarminGravelWorlds.png";
 import Mouse from "../Images/Mouse.gif";
 import Octopus from "../Images/Octopus.gif";
 import Ralph from "../Images/Ralph.gif";
@@ -186,7 +186,10 @@ const Winner = styled("div", ({ $theme }) => ({
   ...$theme.typography.font1450,
   fontSize: `${VMIN(16)}`,
   lineHeight: "0.875",
-  fontFamily: "'Bangers', cursive",
+  fontFamily: "'Yanone Kaffeesatz', sans-serif",
+  textTransform: "uppercase",
+  fontWeight: 800,
+  // fontFamily: "'Bangers', cursive",
   // fontFamily: "'Permanent Marker', cursive",
 }));
 
@@ -213,7 +216,7 @@ const LogoImage = styled<{ $visible: boolean }, "img">(
     top: "50%",
     left: "50%",
     transform: "translateX(-50%) translateY(-50%)",
-    height: "80vh",
+    width: "90vw",
     opacity: $visible ? 0.25 : 0,
     zIndex: 1,
     transition: "opacity 2500ms",
@@ -338,7 +341,7 @@ export const Home: React.FC = () => {
           Entries
         </EntriesLink>
       </BodyInner>
-      <LogoImage $visible={image === 0} src={BicycLincoln} />
+      <LogoImage $visible={image === 0} src={GarminGravelWorlds} />
     </Body>
   );
 };
