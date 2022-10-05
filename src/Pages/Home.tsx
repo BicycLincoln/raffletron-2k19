@@ -26,7 +26,7 @@ interface IGif {
   enabled: boolean;
 }
 
-const ANIMATION_LENGTH = 3000;
+const ANIMATION_LENGTH = 1_500;
 const GIFS: IGif[] = [
   {
     direction: "left",
