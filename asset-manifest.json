@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/raffletron-2k19/static/css/main.4a4137e4.chunk.css",
-    "main.js": "/raffletron-2k19/static/js/main.691d5e4f.chunk.js",
-    "main.js.map": "/raffletron-2k19/static/js/main.691d5e4f.chunk.js.map",
+    "main.js": "/raffletron-2k19/static/js/main.439674bf.chunk.js",
+    "main.js.map": "/raffletron-2k19/static/js/main.439674bf.chunk.js.map",
     "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.3d769238.js",
     "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.3d769238.js.map",
     "static/js/2.c599018f.chunk.js": "/raffletron-2k19/static/js/2.c599018f.chunk.js",
@@ -26,6 +26,6 @@
     "static/js/runtime-main.3d769238.js",
     "static/js/2.c599018f.chunk.js",
     "static/css/main.4a4137e4.chunk.css",
-    "static/js/main.691d5e4f.chunk.js"
+    "static/js/main.439674bf.chunk.js"
   ]
 }
