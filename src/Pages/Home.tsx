@@ -6,7 +6,7 @@ import { StyledLink } from "../Components/StyledLink";
 import { useLocalState } from "../Hooks/useLocalState";
 import Cat from "../Images/Cat.gif";
 import Dog from "../Images/Dog.gif";
-import GarminGravelWorlds from "../Images/GarminGravelWorlds.png";
+import Logo from "../Images/BicycLincoln-Cog.svg";
 import Mouse from "../Images/Mouse.gif";
 import Octopus from "../Images/Octopus.gif";
 import Ralph from "../Images/Ralph.gif";
@@ -216,7 +216,7 @@ const LogoImage = styled<{ $visible: boolean }, "img">(
     top: "50%",
     left: "50%",
     transform: "translateX(-50%) translateY(-50%)",
-    width: "90vw",
+    width: "50vw",
     opacity: $visible ? 0.25 : 0,
     zIndex: 1,
     transition: "opacity 2500ms",
@@ -341,7 +341,7 @@ export const Home: React.FC = () => {
           Entries
         </EntriesLink>
       </BodyInner>
-      <LogoImage $visible={image === 0} src={GarminGravelWorlds} />
+      <LogoImage $visible={image === 0} src={Logo} />
     </Body>
   );
 };

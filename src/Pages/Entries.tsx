@@ -70,7 +70,7 @@ export const Entries: React.FC = () => {
   const nameInputRef = useRef<any>(null);
   const [importing, setImporting] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
-  const [tickets, setTickets] = useState<string>("");
+  const [tickets, setTickets] = useState<string>("1");
   const [importFile, setImportFile] = useState<File>();
   const [importType, setImportType] = useState<"replace" | "append">("replace");
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
@@ -78,6 +78,7 @@ export const Entries: React.FC = () => {
 
   const onSubmit = (e: any) => {
     e.preventDefault();
+
     if (name && parseInt(tickets, 10) > 0) {
       const newEntries = [
         ...entries,
@@ -88,7 +89,7 @@ export const Entries: React.FC = () => {
       ];
       setEntries(newEntries);
       setName("");
-      setTickets("");
+      setTickets("1");
       nameInputRef?.current?.focus();
     }
   };
