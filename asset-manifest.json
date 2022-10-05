@@ -1,31 +1,24 @@
 {
   "files": {
-    "main.css": "/raffletron-2k19/static/css/main.4a4137e4.chunk.css",
-    "main.js": "/raffletron-2k19/static/js/main.439674bf.chunk.js",
-    "main.js.map": "/raffletron-2k19/static/js/main.439674bf.chunk.js.map",
-    "runtime-main.js": "/raffletron-2k19/static/js/runtime-main.3d769238.js",
-    "runtime-main.js.map": "/raffletron-2k19/static/js/runtime-main.3d769238.js.map",
-    "static/js/2.c599018f.chunk.js": "/raffletron-2k19/static/js/2.c599018f.chunk.js",
-    "static/js/2.c599018f.chunk.js.map": "/raffletron-2k19/static/js/2.c599018f.chunk.js.map",
+    "main.css": "/raffletron-2k19/static/css/main.e6c13ad2.css",
+    "main.js": "/raffletron-2k19/static/js/main.32d0f2a1.js",
+    "static/media/GravelWorlds.png": "/raffletron-2k19/static/media/GravelWorlds.d1c783c13b8d149f0a2d.png",
+    "static/media/Ralph.gif": "/raffletron-2k19/static/media/Ralph.558ce95318fc9ad59fda.gif",
+    "static/media/Mouse.gif": "/raffletron-2k19/static/media/Mouse.1ddb0aebe2fa872ade34.gif",
+    "static/media/Octopus.gif": "/raffletron-2k19/static/media/Octopus.3e612d94852804b3ebcf.gif",
+    "static/media/Squirrel.gif": "/raffletron-2k19/static/media/Squirrel.0b4d6f5ad60bbd64c7ae.gif",
+    "static/media/Dog.gif": "/raffletron-2k19/static/media/Dog.e88f1d55ac90260113e9.gif",
+    "static/media/Ralphette.gif": "/raffletron-2k19/static/media/Ralphette.25a0413d9a7cb8e9b5b0.gif",
+    "static/media/RalphSr.gif": "/raffletron-2k19/static/media/RalphSr.be1e5381750182ed9316.gif",
+    "static/media/Shark.gif": "/raffletron-2k19/static/media/Shark.c611c1d3d2b8aa78f679.gif",
+    "static/media/Cat.gif": "/raffletron-2k19/static/media/Cat.c89c7dc3fceac9ab0591.gif",
+    "static/media/BicycLincoln-Cog.svg": "/raffletron-2k19/static/media/BicycLincoln-Cog.79e0af79fc16b8a8c3196772e9e07fee.svg",
     "index.html": "/raffletron-2k19/index.html",
-    "static/css/main.4a4137e4.chunk.css.map": "/raffletron-2k19/static/css/main.4a4137e4.chunk.css.map",
-    "static/js/2.c599018f.chunk.js.LICENSE.txt": "/raffletron-2k19/static/js/2.c599018f.chunk.js.LICENSE.txt",
-    "static/media/BicycLincoln-Cog.79e0af79.svg": "/raffletron-2k19/static/media/BicycLincoln-Cog.79e0af79.svg",
-    "static/media/Cat.c89c7dc3.gif": "/raffletron-2k19/static/media/Cat.c89c7dc3.gif",
-    "static/media/Dog.e88f1d55.gif": "/raffletron-2k19/static/media/Dog.e88f1d55.gif",
-    "static/media/GravelWorlds.d1c783c1.png": "/raffletron-2k19/static/media/GravelWorlds.d1c783c1.png",
-    "static/media/Mouse.1ddb0aeb.gif": "/raffletron-2k19/static/media/Mouse.1ddb0aeb.gif",
-    "static/media/Octopus.3e612d94.gif": "/raffletron-2k19/static/media/Octopus.3e612d94.gif",
-    "static/media/Ralph.558ce953.gif": "/raffletron-2k19/static/media/Ralph.558ce953.gif",
-    "static/media/RalphSr.be1e5381.gif": "/raffletron-2k19/static/media/RalphSr.be1e5381.gif",
-    "static/media/Ralphette.25a0413d.gif": "/raffletron-2k19/static/media/Ralphette.25a0413d.gif",
-    "static/media/Shark.c611c1d3.gif": "/raffletron-2k19/static/media/Shark.c611c1d3.gif",
-    "static/media/Squirrel.0b4d6f5a.gif": "/raffletron-2k19/static/media/Squirrel.0b4d6f5a.gif"
+    "main.e6c13ad2.css.map": "/raffletron-2k19/static/css/main.e6c13ad2.css.map",
+    "main.32d0f2a1.js.map": "/raffletron-2k19/static/js/main.32d0f2a1.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.3d769238.js",
-    "static/js/2.c599018f.chunk.js",
-    "static/css/main.4a4137e4.chunk.css",
-    "static/js/main.439674bf.chunk.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.32d0f2a1.js"
   ]
 }
