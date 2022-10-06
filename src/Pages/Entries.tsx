@@ -1,5 +1,6 @@
 import { styled, useStyletron, withStyle } from "baseui";
 import { Button, SIZE } from "baseui/button";
+import { Alert } from "baseui/icon";
 import { FileUploader, StyledContentMessage } from "baseui/file-uploader";
 import { FormControl } from "baseui/form-control";
 import { Input } from "baseui/input";
@@ -65,6 +66,22 @@ const Header = styled(H5, ({ $theme }) => ({
   borderBottomStyle: "solid",
 }));
 
+const Negative = () => {
+  const [css, theme] = useStyletron();
+  return (
+    <div
+      className={css({
+        display: "flex",
+        alignItems: "center",
+        paddingRight: theme.sizing.scale500,
+        color: theme.colors.negative300,
+      })}
+    >
+      <Alert size="18px" />
+    </div>
+  );
+};
+
 export const Entries: React.FC = () => {
   const history = useHistory();
   const nameInputRef = useRef<any>(null);
@@ -75,22 +92,32 @@ export const Entries: React.FC = () => {
   const [importType, setImportType] = useState<"replace" | "append">("replace");
   const [entries, setEntries] = useLocalState<any[]>("entries", []);
   const [css, theme] = useStyletron();
+  const [nameError, setNameError] = useState("");
 
   const onSubmit = (e: any) => {
     e.preventDefault();
 
-    if (name && parseInt(tickets, 10) > 0) {
-      const newEntries = [
-        ...entries,
-        {
-          name,
-          entries: tickets,
-        },
-      ];
-      setEntries(newEntries);
-      setName("");
-      setTickets("1");
-      nameInputRef?.current?.focus();
+    const trimmed = name.trim();
+
+    const exists = entries.some((v: any) => v.name === trimmed);
+
+    if (exists) {
+      setNameError("An entry already exists for this name");
+    } else {
+      setNameError("");
+      if (trimmed && parseInt(tickets, 10) > 0) {
+        const newEntries = [
+          ...entries,
+          {
+            name: trimmed,
+            entries: tickets,
+          },
+        ];
+        setEntries(newEntries);
+        setName("");
+        setTickets("1");
+        nameInputRef?.current?.focus();
+      }
     }
   };
 
@@ -169,7 +196,7 @@ export const Entries: React.FC = () => {
       <div>
         <Form onSubmit={onSubmit}>
           <Header>Add Entry</Header>
-          <FormControl label="Name">
+          <FormControl label="Name" error={!!nameError ? nameError : null}>
             <Input
               id="name"
               value={name}
@@ -177,6 +204,8 @@ export const Entries: React.FC = () => {
               autoComplete="off"
               autoFocus
               inputRef={nameInputRef}
+              error={!!nameError}
+              overrides={!!nameError ? { After: Negative } : {}}
               onChange={(event) => setName(event.currentTarget.value)}
             />
           </FormControl>
