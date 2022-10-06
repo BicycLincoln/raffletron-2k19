@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/raffletron-2k19/static/css/main.e6c13ad2.css",
-    "main.js": "/raffletron-2k19/static/js/main.986922c8.js",
+    "main.js": "/raffletron-2k19/static/js/main.b97288de.js",
     "static/media/GravelWorlds.png": "/raffletron-2k19/static/media/GravelWorlds.d1c783c13b8d149f0a2d.png",
     "static/media/Ralph.gif": "/raffletron-2k19/static/media/Ralph.558ce95318fc9ad59fda.gif",
     "static/media/Mouse.gif": "/raffletron-2k19/static/media/Mouse.1ddb0aebe2fa872ade34.gif",
@@ -15,10 +15,10 @@
     "static/media/BicycLincoln-Cog.svg": "/raffletron-2k19/static/media/BicycLincoln-Cog.79e0af79fc16b8a8c3196772e9e07fee.svg",
     "index.html": "/raffletron-2k19/index.html",
     "main.e6c13ad2.css.map": "/raffletron-2k19/static/css/main.e6c13ad2.css.map",
-    "main.986922c8.js.map": "/raffletron-2k19/static/js/main.986922c8.js.map"
+    "main.b97288de.js.map": "/raffletron-2k19/static/js/main.b97288de.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.986922c8.js"
+    "static/js/main.b97288de.js"
   ]
 }
